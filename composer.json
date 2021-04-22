@@ -1,0 +1,19 @@
+{
+  "name": "yoshi2889/model",
+  "description": "Simple model class",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "require": {
+    "php": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "NanoSector\\Models\\": "src/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.2"
+    }
+  }
+}
