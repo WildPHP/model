@@ -2,7 +2,6 @@
 
 namespace NanoSector\Models\Deserializers;
 
-use NanoSector\Models\Exceptions\DeserializationException;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
 use NanoSector\Models\Helpers\DeserializerHelper;
 

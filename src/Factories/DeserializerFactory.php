@@ -4,9 +4,7 @@
 namespace NanoSector\Models\Factories;
 
 
-use NanoSector\Models\Deserializers\ArrayDeserializer;
 use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Deserializers\ModelDeserializer;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
 use NanoSector\Models\Helpers\DeserializerHelper;
 

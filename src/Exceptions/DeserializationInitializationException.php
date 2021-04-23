@@ -4,7 +4,9 @@
 namespace NanoSector\Models\Exceptions;
 
 
-class DeserializationInitializationException extends \Exception
+use Exception;
+
+class DeserializationInitializationException extends Exception
 {
 
 }
