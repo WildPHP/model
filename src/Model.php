@@ -311,10 +311,7 @@ abstract class Model
      */
     public function propertyExists(string $key): bool
     {
-        return array_key_exists(
-                 $key,
-                 $this->properties
-               ) && $this->properties[$key] !== null;
+        return array_key_exists($key, $this->properties);
     }
 
     /**

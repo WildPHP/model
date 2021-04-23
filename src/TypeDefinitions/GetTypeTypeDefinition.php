@@ -19,7 +19,7 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
 
     public const RESOURCE_CLOSED = 'resource (closed)';
 
-    public const NULL = 'null';
+    public const NULL = 'NULL';
 
     /**
      * Possible values for gettype()
