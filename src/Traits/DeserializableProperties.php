@@ -31,13 +31,11 @@ trait DeserializableProperties
     protected $deserializers = [];
 
     /**
-     * Infer deserializers from the given wanted type array
-     *
-     * @param  array<string, string|string[]>  $wantedTypes
+     * Infer deserializers from settable types.
      */
-    protected function inferDeserializers(array $wantedTypes): void
+    protected function inferDeserializers(): void
     {
-        foreach ($wantedTypes as $key => $wantedType) {
+        foreach ($this->settable as $key => $wantedType) {
             // Assume the user knows best and skip if they have overridden this deserializer
             if (array_key_exists($key, $this->deserializers)) {
                 continue;
