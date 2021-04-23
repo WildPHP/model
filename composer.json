@@ -1,6 +1,6 @@
 {
   "name": "yoshi2889/model",
-  "description": "Simple model class",
+  "description": "Magically simple model class",
   "minimum-stability": "stable",
   "license": "MIT",
   "require": {
@@ -8,12 +8,16 @@
   },
   "autoload": {
     "psr-4": {
-      "NanoSector\\Models\\": "src/"
+      "NanoSector\\Models\\": "src/",
+      "NanoSector\\Models\\Tests\\": "tests/"
     }
   },
   "config": {
     "platform": {
       "php": "7.2"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5"
   }
 }
