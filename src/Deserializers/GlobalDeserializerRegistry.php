@@ -24,6 +24,17 @@ class GlobalDeserializerRegistry
     protected static $typeDeserializers = [];
 
     /**
+     * Generate and add all default deserializers.
+     *
+     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     */
+    public static function all(): void
+    {
+        self::dateTime();
+        self::juggle();
+    }
+
+    /**
      * Generate and add deserializers for date and time types.
      *
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException

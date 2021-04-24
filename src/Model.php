@@ -9,28 +9,25 @@ declare(strict_types=1);
 namespace NanoSector\Models;
 
 use NanoSector\Models\Exceptions\ModelException;
-use NanoSector\Models\Traits\DeserializableProperties;
+use NanoSector\Models\Traits\HasMagicProperties;
+use NanoSector\Models\Traits\HasMandatoryProperties;
+use NanoSector\Models\Traits\Hydratable;
 use NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter;
 
 abstract class Model
 {
-
-    use DeserializableProperties;
+    use HasMandatoryProperties;
+    use HasMagicProperties {
+        __set as setProperty;
+    }
+    use Hydratable;
 
     /**
      * Whether to ignore unknown keys. False will throw an error.
      *
      * @var bool
      */
-    protected $ignoreUnknownKeys = true;
-
-    /**
-     * The properties in this object. You can override this in your model
-     * class to set default properties.
-     *
-     * @var array<string, mixed>
-     */
-    protected $properties = [];
+    protected $ignoreUnknownProperties = true;
 
     /**
      * Properties which can be assigned in the type definition format.
@@ -56,41 +53,11 @@ abstract class Model
     protected $settable = [];
 
     /**
-     * Properties which may be mass assigned or hydrated.
-     * Setting this when guarded is set will override guarded.
-     *
-     * @var string[]
-     * @see \NanoSector\Models\Model::$guarded
-     */
-    protected $fillable = [];
-
-    /**
-     * Properties which may not be mass assigned or hydrated.
-     * Setting this when fillable is set has no effect.
-     *
-     * @var string[]
-     * @see \NanoSector\Models\Model::$fillable
-     */
-    protected $guarded = [];
-
-    /**
-     * A list of mandatory properties when first creating a model.
-     * Any attempt to create a model which misses a mandatory property
-     * will throw an InvalidArgumentException.
-     *
-     * Please note that adding properties with default values here
-     * negates the purpose of making them mandatory.
-     *
-     * @var string[]
-     */
-    protected $mandatory = [];
-
-    /**
      * Inferred type definitions for the settable properties.
      *
      * @var array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
      */
-    private $typeDefinitions;
+    protected $typeDefinitions;
 
     /**
      * Model constructor.
@@ -99,9 +66,9 @@ abstract class Model
      *
      * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
      */
-    final public function __construct(array $properties = [])
+    public function __construct(array $properties = [])
     {
-        if (!$this->hasMandatoryProperties($properties)) {
+        if (!$this->satisfiesMandatoryProperties($properties)) {
             throw new ModelException(
                 'Model is missing one or more mandatory properties'
             );
@@ -111,81 +78,8 @@ abstract class Model
             $this->settable
         );
 
-        $this->inferDeserializers();
-
         $this->hydrate($properties);
         $this->addDefaults();
-    }
-
-    /**
-     * Checks whether all mandatory properties exist
-     * in the given array.
-     *
-     * @param array $array
-     *
-     * @return bool
-     */
-    private function hasMandatoryProperties(array $array): bool
-    {
-        return array_intersect(
-                array_keys($array),
-                $this->mandatory
-            ) === $this->mandatory;
-    }
-
-    /**
-     * Mass assigns this model instance with the given properties.
-     *
-     * @param array<string, mixed> $properties
-     */
-    public function hydrate(array $properties): void
-    {
-        if (empty($properties)) {
-            return;
-        }
-
-        $this->stripInvalidProperties($properties);
-
-        foreach ($properties as $key => $value) {
-            if (!$this->canHydrate($key)) {
-                continue;
-            }
-
-            $this->{$key} = $value;
-        }
-    }
-
-    /**
-     * Strips properties from the given defaults which
-     * are not mass assignable or otherwise invalid.
-     *
-     * @param array $array
-     */
-    public function stripInvalidProperties(array &$array): void
-    {
-        foreach ($array as $key => $value) {
-            if (!$this->canHydrate($key) || !$this->canAssignValue(
-                    $key,
-                    $value
-                )) {
-                unset($array[$key]);
-            }
-        }
-    }
-
-    /**
-     * Checks whether the given key can be mass assigned.
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function canHydrate(string $key): bool
-    {
-        return empty($this->fillable) ? !in_array(
-            $key,
-            $this->guarded
-        ) : in_array($key, $this->fillable);
     }
 
     /**
@@ -204,8 +98,7 @@ abstract class Model
 
         $wantedTypeDefinition = $this->typeDefinitions[$key];
 
-        return $this->canDeserialize($key, $value)
-            || $wantedTypeDefinition->validate($value);
+        return $wantedTypeDefinition->validate($value);
     }
 
     /**
@@ -225,7 +118,7 @@ abstract class Model
     /**
      * Return many instances of this model from the given array.
      *
-     * @param array $array
+     * @param array<array> $array
      *
      * @return static[]
      * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
@@ -241,78 +134,30 @@ abstract class Model
     }
 
     /**
-     * Returns the properties in this object as an
-     * associative array.
+     * Set a property on this model, taking types into account.
      *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return $this->properties;
-    }
-
-    /**
-     * Tries to get a given property from this object.
-     * Returns null on failure.
-     *
-     * @param string $name
-     *
-     * @return mixed|null
-     * @throws \NanoSector\Models\Exceptions\ModelException when accessing an
-     *   unknown property.
-     */
-    public function &__get(string $name)
-    {
-        if (!$this->propertyExists($name)) {
-            throw new ModelException(
-                'Property with key ' . $name . ' not found on this model instance'
-            );
-        }
-
-        return $this->properties[$name];
-    }
-
-    /**
-     * Set a property on this object.
-     *
-     * @param string $name
-     * @param mixed  $value
+     * @param string $key
+     * @param mixed $value
      *
      * @throws \NanoSector\Models\Exceptions\ModelException
      */
-    public function __set(string $name, $value)
+    public function __set(string $key, $value)
     {
-        if (!$this->isPropertySettable($name)) {
-            if (!$this->ignoreUnknownKeys) {
-                throw new ModelException('Cannot set property with key ' . $name);
+        if (!$this->isPropertyKnown($key)) {
+            if (!$this->ignoreUnknownProperties) {
+                throw new ModelException('Cannot set property with key ' . $key);
             }
 
             return;
         }
 
-        if ($this->canDeserialize($name, $value)) {
-            $value = $this->deserialize($name, $value);
-        }
-
-        if (!$this->canAssignValue($name, $value)) {
+        if (!$this->canAssignValue($key, $value)) {
             throw new ModelException(
-                'Trying to set an invalid value for key ' . $name
+                'Trying to set an invalid value for key ' . $key
             );
         }
 
-        $this->properties[$name] = $value;
-    }
-
-    /**
-     * Checks whether a given property currently exists.
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function propertyExists(string $key): bool
-    {
-        return array_key_exists($key, $this->properties);
+        $this->setProperty($key, $value);
     }
 
     /**
@@ -322,24 +167,12 @@ abstract class Model
      *
      * @return bool
      */
-    public function isPropertySettable(string $key): bool
+    public function isPropertyKnown(string $key): bool
     {
         return in_array($key, $this->settable, true) || array_key_exists(
                 $key,
                 $this->settable
             );
-    }
-
-    /**
-     * Checks whether a property is set on this object.
-     *
-     * @param string $name
-     *
-     * @return bool
-     */
-    public function __isset(string $name)
-    {
-        return $this->propertyExists($name);
     }
 
 }
