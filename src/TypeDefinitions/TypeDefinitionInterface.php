@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\TypeDefinitions;
 
@@ -8,7 +12,7 @@ interface TypeDefinitionInterface
     /**
      * Validates that a given value passes this type definition's checks.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
      * @return bool true if the value passes, false otherwise.
      */

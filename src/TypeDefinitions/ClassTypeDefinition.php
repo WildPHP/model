@@ -1,8 +1,10 @@
 <?php
-
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\TypeDefinitions;
-
 
 use NanoSector\Models\Exceptions\TypeDefinitionException;
 
@@ -17,7 +19,7 @@ class ClassTypeDefinition implements TypeDefinitionInterface
     /**
      * ClassTypeDefinition constructor.
      *
-     * @param  string  $wantedClass
+     * @param string $wantedClass
      *
      * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
@@ -25,7 +27,7 @@ class ClassTypeDefinition implements TypeDefinitionInterface
     {
         if (!class_exists($wantedClass)) {
             throw new TypeDefinitionException(
-              'The wanted class does not exist in ClassTypeDefinition'
+                'The wanted class does not exist in ClassTypeDefinition'
             );
         }
         $this->wantedClass = $wantedClass;

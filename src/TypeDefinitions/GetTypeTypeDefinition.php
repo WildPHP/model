@@ -1,8 +1,10 @@
 <?php
-
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\TypeDefinitions;
-
 
 use NanoSector\Models\Exceptions\TypeDefinitionException;
 
@@ -30,13 +32,13 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
      * @see \gettype()
      */
     public const GETTYPE_VALUES = [
-      self::BOOLEAN,
-      self::INTEGER,
-      self::FLOAT,
-      self::STRING,
-      self::RESOURCE,
-      self::RESOURCE_CLOSED,
-      self::NULL,
+        self::BOOLEAN,
+        self::INTEGER,
+        self::FLOAT,
+        self::STRING,
+        self::RESOURCE,
+        self::RESOURCE_CLOSED,
+        self::NULL,
     ];
 
     /**
@@ -47,7 +49,7 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
     /**
      * GetTypeTypeDefinition constructor.
      *
-     * @param  string  $wantedType
+     * @param string $wantedType
      *
      * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
@@ -55,7 +57,7 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
     {
         if (!in_array($wantedType, self::GETTYPE_VALUES)) {
             throw new TypeDefinitionException(
-              'Unknown gettype value passed to GetTypeTypeDefinition'
+                'Unknown gettype value passed to GetTypeTypeDefinition'
             );
         }
 

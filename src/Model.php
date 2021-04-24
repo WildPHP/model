@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 declare(strict_types=1);
 
@@ -91,7 +95,7 @@ abstract class Model
     /**
      * Model constructor.
      *
-     * @param  array<string, mixed>  $properties  default properties to set
+     * @param array<string, mixed> $properties default properties to set
      *
      * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
      */
@@ -99,12 +103,12 @@ abstract class Model
     {
         if (!$this->hasMandatoryProperties($properties)) {
             throw new ModelException(
-              'Model is missing one or more mandatory properties'
+                'Model is missing one or more mandatory properties'
             );
         }
 
         $this->typeDefinitions = TypeDefinitionInterpreter::createDefinitionMap(
-          $this->settable
+            $this->settable
         );
 
         $this->inferDeserializers();
@@ -117,22 +121,22 @@ abstract class Model
      * Checks whether all mandatory properties exist
      * in the given array.
      *
-     * @param  array  $array
+     * @param array $array
      *
      * @return bool
      */
     private function hasMandatoryProperties(array $array): bool
     {
         return array_intersect(
-                 array_keys($array),
-                 $this->mandatory
-               ) === $this->mandatory;
+                array_keys($array),
+                $this->mandatory
+            ) === $this->mandatory;
     }
 
     /**
      * Mass assigns this model instance with the given properties.
      *
-     * @param  array<string, mixed>  $properties
+     * @param array<string, mixed> $properties
      */
     public function hydrate(array $properties): void
     {
@@ -155,15 +159,15 @@ abstract class Model
      * Strips properties from the given defaults which
      * are not mass assignable or otherwise invalid.
      *
-     * @param  array  $array
+     * @param array $array
      */
     public function stripInvalidProperties(array &$array): void
     {
         foreach ($array as $key => $value) {
             if (!$this->canHydrate($key) || !$this->canAssignValue(
-                $key,
-                $value
-              )) {
+                    $key,
+                    $value
+                )) {
                 unset($array[$key]);
             }
         }
@@ -172,23 +176,23 @@ abstract class Model
     /**
      * Checks whether the given key can be mass assigned.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return bool
      */
     public function canHydrate(string $key): bool
     {
         return empty($this->fillable) ? !in_array(
-          $key,
-          $this->guarded
+            $key,
+            $this->guarded
         ) : in_array($key, $this->fillable);
     }
 
     /**
      * Checks whether the given value can be set on the given key.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
      *
      * @return bool
      */
@@ -202,7 +206,7 @@ abstract class Model
         $wantedTypeDefinition = $this->typeDefinitions[$key];
 
         return $this->canDeserialize($key, $value, $wantedType)
-               || $wantedTypeDefinition->validate($value);
+            || $wantedTypeDefinition->validate($value);
     }
 
     /**
@@ -222,7 +226,7 @@ abstract class Model
     /**
      * Return many instances of this model from the given array.
      *
-     * @param  array  $array
+     * @param array $array
      *
      * @return static[]
      * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
@@ -230,10 +234,10 @@ abstract class Model
     public static function many(array $array): array
     {
         return array_map(
-          static function (array $serializedModel) {
-              return new static($serializedModel);
-          },
-          $array
+            static function (array $serializedModel) {
+                return new static($serializedModel);
+            },
+            $array
         );
     }
 
@@ -252,7 +256,7 @@ abstract class Model
      * Tries to get a given property from this object.
      * Returns null on failure.
      *
-     * @param  string  $name
+     * @param string $name
      *
      * @return mixed|null
      * @throws \NanoSector\Models\Exceptions\ModelException when accessing an
@@ -262,7 +266,7 @@ abstract class Model
     {
         if (!$this->propertyExists($name)) {
             throw new ModelException(
-              'Property with key '.$name.' not found on this model instance'
+                'Property with key ' . $name . ' not found on this model instance'
             );
         }
 
@@ -272,8 +276,8 @@ abstract class Model
     /**
      * Set a property on this object.
      *
-     * @param  string  $name
-     * @param  mixed  $value
+     * @param string $name
+     * @param mixed  $value
      *
      * @throws \NanoSector\Models\Exceptions\ModelException
      */
@@ -281,7 +285,7 @@ abstract class Model
     {
         if (!$this->isPropertySettable($name)) {
             if (!$this->ignoreUnknownKeys) {
-                throw new ModelException('Cannot set property with key '.$name);
+                throw new ModelException('Cannot set property with key ' . $name);
             }
 
             return;
@@ -294,7 +298,7 @@ abstract class Model
 
         if (!$this->canAssignValue($name, $value)) {
             throw new ModelException(
-              'Trying to set an invalid value for key '.$name
+                'Trying to set an invalid value for key ' . $name
             );
         }
 
@@ -304,7 +308,7 @@ abstract class Model
     /**
      * Checks whether a given property currently exists.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return bool
      */
@@ -316,22 +320,22 @@ abstract class Model
     /**
      * Checks whether the given property should exist on this model.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return bool
      */
     public function isPropertySettable(string $key): bool
     {
         return in_array($key, $this->settable, true) || array_key_exists(
-            $key,
-            $this->settable
-          );
+                $key,
+                $this->settable
+            );
     }
 
     /**
      * Checks whether a property is set on this object.
      *
-     * @param  string  $name
+     * @param string $name
      *
      * @return bool
      */

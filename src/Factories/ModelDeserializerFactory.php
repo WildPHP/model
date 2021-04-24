@@ -1,8 +1,10 @@
 <?php
-
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Factories;
-
 
 use NanoSector\Models\Deserializers\DeserializerInterface;
 use NanoSector\Models\Deserializers\ModelDeserializer;
@@ -20,7 +22,7 @@ class ModelDeserializerFactory implements DeserializerFactoryInterface
     /**
      * ModelDeserializerFactory constructor.
      *
-     * @param  string  $modelClass
+     * @param string $modelClass
      *
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
      */
@@ -28,7 +30,7 @@ class ModelDeserializerFactory implements DeserializerFactoryInterface
     {
         if (!DeserializerHelper::isModel($modelClass)) {
             throw new DeserializationInitializationException(
-              'Given class is not a model class.'
+                'Given class is not a model class.'
             );
         }
         $this->modelClass = $modelClass;

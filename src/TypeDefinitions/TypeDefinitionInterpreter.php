@@ -1,8 +1,10 @@
 <?php
-
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\TypeDefinitions;
-
 
 class TypeDefinitionInterpreter
 {
@@ -10,7 +12,7 @@ class TypeDefinitionInterpreter
     /**
      * Generates a definition map from a given
      *
-     * @param  array  $array
+     * @param array $array
      *
      * @return array
      * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
@@ -28,7 +30,7 @@ class TypeDefinitionInterpreter
     /**
      * Interpret a given array.
      *
-     * @param  string|string[]  $definition
+     * @param string|string[] $definition
      *
      * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */

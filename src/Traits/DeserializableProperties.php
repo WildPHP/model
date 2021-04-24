@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Traits;
 
@@ -19,8 +23,8 @@ trait DeserializableProperties
      * @var array<string, string|DeserializerInterface>
      */
     protected $typeDeserializers = [
-      'double'        => FloatDeserializer::class,
-      DateTime::class => DateTimeDeserializer::class,
+        'double' => FloatDeserializer::class,
+        DateTime::class => DateTimeDeserializer::class,
     ];
 
     /**
@@ -43,7 +47,7 @@ trait DeserializableProperties
 
             try {
                 $deserializer = DeserializerFactoryProducer::fromTypeDefinition(
-                  $wantedType
+                    $wantedType
                 )->getDeserializer();
                 $this->deserializers[$key] = $deserializer;
             } catch (DeserializationInitializationException $e) {
@@ -53,16 +57,16 @@ trait DeserializableProperties
     }
 
     /**
-     * @param  array|string  $type
+     * @param array|string $type
      *
      * @return DeserializerInterface|null
      */
     private function getTypeDeserializer($type): ?DeserializerInterface
     {
         if (!is_string($type) || !array_key_exists(
-            $type,
-            $this->typeDeserializers
-          )) {
+                $type,
+                $this->typeDeserializers
+            )) {
             return null;
         }
 
@@ -76,15 +80,15 @@ trait DeserializableProperties
     }
 
     /**
-     * @param  string  $key
+     * @param string $key
      *
      * @return DeserializerInterface|null
      */
     private function getDeserializer(string $key): ?DeserializerInterface
     {
         if (
-          !property_exists($this, 'deserializers') ||
-          !array_key_exists($key, $this->deserializers)
+            !property_exists($this, 'deserializers') ||
+            !array_key_exists($key, $this->deserializers)
         ) {
             return null;
         }
@@ -99,16 +103,16 @@ trait DeserializableProperties
     }
 
     /**
-     * @param  string  $name
-     * @param  mixed  $value
-     * @param  string|array  $wantedType
+     * @param string       $name
+     * @param mixed        $value
+     * @param string|array $wantedType
      *
      * @return bool
      */
     private function canDeserialize(string $name, $value, $wantedType): bool
     {
         $deserializer = $this->getDeserializer($name)
-                        ?? $this->getTypeDeserializer($wantedType);
+            ?? $this->getTypeDeserializer($wantedType);
 
         return $deserializer !== null && $deserializer->canDeserialize($value);
     }
@@ -116,16 +120,16 @@ trait DeserializableProperties
     /**
      * Deserializes a given key/value pair.
      *
-     * @param  string  $name
-     * @param  mixed  $value
-     * @param  string|array  $wantedType
+     * @param string       $name
+     * @param mixed        $value
+     * @param string|array $wantedType
      *
      * @return mixed
      */
     private function deserialize(string $name, $value, $wantedType)
     {
         $deserializer = $this->getDeserializer($name)
-                        ?? $this->getTypeDeserializer($wantedType);
+            ?? $this->getTypeDeserializer($wantedType);
 
         if ($deserializer === null) {
             return $value;

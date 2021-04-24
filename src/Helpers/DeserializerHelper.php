@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Helpers;
 
@@ -15,7 +19,7 @@ class DeserializerHelper
 {
 
     /**
-     * @param  DeserializerInterface|string|string[]  $wanted
+     * @param DeserializerInterface|string|string[] $wanted
      *
      * @return \NanoSector\Models\Deserializers\DeserializerInterface|null
      */
@@ -29,7 +33,7 @@ class DeserializerHelper
             $typeDefinition = TypeDefinitionInterpreter::interpret($wanted);
 
             return DeserializerFactoryProducer::fromTypeDefinition(
-              $typeDefinition
+                $typeDefinition
             )->getDeserializer();
         } catch (DeserializationInitializationException | TypeDefinitionException $e) {
             return null;
@@ -39,7 +43,7 @@ class DeserializerHelper
     /**
      * Determine whether a given class is a deserializer.
      *
-     * @param  string  $class
+     * @param string $class
      *
      * @return bool
      */
@@ -52,7 +56,7 @@ class DeserializerHelper
         try {
             $reflection = new ReflectionClass($class);
             return $reflection->implementsInterface(
-              DeserializerInterface::class
+                DeserializerInterface::class
             );
         } catch (ReflectionException $e) {
             return false;
@@ -62,7 +66,7 @@ class DeserializerHelper
     /**
      * Determine whether a given class is a model.
      *
-     * @param  string  $class
+     * @param string $class
      *
      * @return bool
      */

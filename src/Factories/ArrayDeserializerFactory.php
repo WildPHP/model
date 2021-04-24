@@ -1,8 +1,10 @@
 <?php
-
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Factories;
-
 
 use NanoSector\Models\Deserializers\ArrayDeserializer;
 use NanoSector\Models\Deserializers\DeserializerInterface;
@@ -18,7 +20,7 @@ class ArrayDeserializerFactory implements DeserializerFactoryInterface
     /**
      * ArrayDeserializerFactory constructor.
      *
-     * @param  \NanoSector\Models\Factories\DeserializerFactoryInterface  $parentDeserializerFactory
+     * @param \NanoSector\Models\Factories\DeserializerFactoryInterface $parentDeserializerFactory
      */
     public function __construct(DeserializerFactoryInterface $parentDeserializerFactory)
     {

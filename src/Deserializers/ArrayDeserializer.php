@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Deserializers;
 
@@ -13,6 +17,7 @@ class ArrayDeserializer implements DeserializerInterface
 
     /**
      * ArrayDeserializer constructor.
+     *
      * @param DeserializerInterface $deserializer
      */
     public function __construct(DeserializerInterface $deserializer)

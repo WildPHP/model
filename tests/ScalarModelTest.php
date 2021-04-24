@@ -1,8 +1,11 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Tests;
 
-use NanoSector\Models\Model;
 use NanoSector\Models\Tests\Samples\ScalarModel;
 use PHPUnit\Framework\TestCase;
 

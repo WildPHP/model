@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Factories;
 
@@ -12,23 +16,23 @@ class DeserializerFactoryProducer
     /**
      * Creates a deserializer from a given
      *
-     * @param  \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface  $typeDefinition
+     * @param \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
      *
      * @return \NanoSector\Models\Factories\DeserializerFactoryInterface
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
      */
     public static function fromTypeDefinition(
-      TypeDefinitionInterface $typeDefinition
+        TypeDefinitionInterface $typeDefinition
     ): DeserializerFactoryInterface {
         if ($typeDefinition instanceof ArrayTypeDefinition) {
             return new ArrayDeserializerFactory(
-              self::fromTypeDefinition($typeDefinition->getContentDefinition())
+                self::fromTypeDefinition($typeDefinition->getContentDefinition())
             );
         }
 
         if (DeserializerHelper::isModel($typeDefinition->toDefinition())) {
             return new ModelDeserializerFactory(
-              $typeDefinition->toDefinition()
+                $typeDefinition->toDefinition()
             );
         }
 

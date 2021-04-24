@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Deserializers;
 
@@ -10,7 +14,7 @@ class DateTimeDeserializer implements DeserializerInterface
 {
 
     /**
-     * @param  mixed  $value
+     * @param mixed $value
      *
      * @return \DateTime
      * @throws \NanoSector\Models\Exceptions\DeserializationException
@@ -23,8 +27,8 @@ class DateTimeDeserializer implements DeserializerInterface
 
         // Try ISO8601 first.
         $date = DateTime::createFromFormat(DateTimeInterface::ATOM, $value)
-          ?: DateTime::createFromFormat('!Y-m-d', $value)
-            ?: DateTime::createFromFormat('H:i:s', $value);
+            ?: DateTime::createFromFormat('!Y-m-d', $value)
+                ?: DateTime::createFromFormat('H:i:s', $value);
 
         if ($date === false) {
             throw new DeserializationException('Cannot deserialize given date');

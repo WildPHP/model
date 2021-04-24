@@ -1,4 +1,8 @@
 <?php
+/*
+ * Copyright 2021 NanoSector
+ * See LICENSE.md in the project root.
+ */
 
 namespace NanoSector\Models\Deserializers;
 
@@ -16,7 +20,7 @@ class ModelDeserializer implements DeserializerInterface
     /**
      * ModelDeserializer constructor.
      *
-     * @param  string  $modelClass
+     * @param string $modelClass
      *
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
      */
@@ -24,7 +28,7 @@ class ModelDeserializer implements DeserializerInterface
     {
         if (!DeserializerHelper::isModel($modelClass)) {
             throw new DeserializationInitializationException(
-              'Cannot create a deserializer out of non-model class '.$modelClass
+                'Cannot create a deserializer out of non-model class ' . $modelClass
             );
         }
 
