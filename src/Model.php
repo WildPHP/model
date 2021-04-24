@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2021 NanoSector
  * See LICENSE.md in the project root.
@@ -113,24 +114,6 @@ abstract class Model
 
             $this->{$key} = $definition->default();
         }
-    }
-
-    /**
-     * Return many instances of this model from the given array.
-     *
-     * @param array<array> $array
-     *
-     * @return static[]
-     * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
-     */
-    public static function many(array $array): array
-    {
-        return array_map(
-            static function (array $serializedModel) {
-                return new static($serializedModel);
-            },
-            $array
-        );
     }
 
     /**

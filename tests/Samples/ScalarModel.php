@@ -1,11 +1,13 @@
 <?php
+
 /*
  * Copyright 2021 NanoSector
  * See LICENSE.md in the project root.
  */
 
-namespace NanoSector\Models\Tests\Samples;
+declare(strict_types=1);
 
+namespace NanoSector\Models\Tests\Samples;
 
 use NanoSector\Models\Model;
 use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;

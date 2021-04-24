@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2021 NanoSector
  * See LICENSE.md in the project root.
@@ -87,8 +88,10 @@ class GlobalDeserializerRegistry
             return;
         }
 
-        if (!is_string($deserializer)
-            || !ReflectionHelper::isDeserializer($deserializer)) {
+        if (
+            !is_string($deserializer)
+            || !ReflectionHelper::isDeserializer($deserializer)
+        ) {
             throw new DeserializationInitializationException('Given class is not a deserializer');
         }
 

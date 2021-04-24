@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2021 NanoSector
  * See LICENSE.md in the project root.
@@ -60,7 +61,8 @@ trait DeserializableProperties
      */
     private function getDeserializer(string $key): ?DeserializerInterface
     {
-        if (!property_exists($this, 'deserializers') ||
+        if (
+            !property_exists($this, 'deserializers') ||
             !array_key_exists($key, $this->deserializers)
         ) {
             return null;

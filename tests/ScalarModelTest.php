@@ -1,8 +1,11 @@
 <?php
+
 /*
  * Copyright 2021 NanoSector
  * See LICENSE.md in the project root.
  */
+
+declare(strict_types=1);
 
 namespace NanoSector\Models\Tests;
 
@@ -27,6 +30,5 @@ class ScalarModelTest extends TestCase
         self::assertEquals('test', $model->string);
         self::assertEquals(true, $model->bool);
         self::assertEquals(100, $model->int);
-
     }
 }
