@@ -43,4 +43,21 @@ class ArrayTypeDefinition implements TypeDefinitionInterface
         return [];
     }
 
+    /**
+     * @inheritDoc
+     * @return array
+     */
+    public function toDefinition(): array
+    {
+        return [$this->contentDefinition->toDefinition()];
+    }
+
+    /**
+     * @return \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface
+     */
+    public function getContentDefinition(): TypeDefinitionInterface
+    {
+        return $this->contentDefinition;
+    }
+
 }

@@ -91,4 +91,13 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
         }
     }
 
+    /**
+     * @inheritDoc
+     * @return string
+     */
+    public function toDefinition(): string
+    {
+        return $this->wantedType;
+    }
+
 }

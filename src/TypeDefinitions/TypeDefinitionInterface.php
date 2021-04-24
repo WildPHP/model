@@ -21,4 +21,11 @@ interface TypeDefinitionInterface
      */
     public function default();
 
+    /**
+     * Returns the readable representation of this type definition.
+     *
+     * @return mixed
+     */
+    public function toDefinition();
+
 }

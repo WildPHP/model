@@ -45,4 +45,13 @@ class ClassTypeDefinition implements TypeDefinitionInterface
         return null;
     }
 
+    /**
+     * @inheritDoc
+     * @return string
+     */
+    public function toDefinition(): string
+    {
+        return $this->wantedClass;
+    }
+
 }
