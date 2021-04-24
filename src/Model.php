@@ -202,10 +202,9 @@ abstract class Model
             return false;
         }
 
-        $wantedType = $this->settable[$key];
         $wantedTypeDefinition = $this->typeDefinitions[$key];
 
-        return $this->canDeserialize($key, $value, $wantedType)
+        return $this->canDeserialize($key, $value)
             || $wantedTypeDefinition->validate($value);
     }
 
@@ -291,9 +290,8 @@ abstract class Model
             return;
         }
 
-        $wantedType = $this->settable[$name];
-        if ($this->canDeserialize($name, $value, $wantedType)) {
-            $value = $this->deserialize($name, $value, $wantedType);
+        if ($this->canDeserialize($name, $value)) {
+            $value = $this->deserialize($name, $value);
         }
 
         if (!$this->canAssignValue($name, $value)) {

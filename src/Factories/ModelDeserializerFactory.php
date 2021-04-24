@@ -11,7 +11,7 @@ namespace NanoSector\Models\Factories;
 use NanoSector\Models\Deserializers\DeserializerInterface;
 use NanoSector\Models\Deserializers\ModelDeserializer;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Helpers\DeserializerHelper;
+use NanoSector\Models\Helpers\ReflectionHelper;
 
 class ModelDeserializerFactory implements DeserializerFactoryInterface
 {
@@ -30,7 +30,7 @@ class ModelDeserializerFactory implements DeserializerFactoryInterface
      */
     public function __construct(string $modelClass)
     {
-        if (!DeserializerHelper::isModel($modelClass)) {
+        if (!ReflectionHelper::isModel($modelClass)) {
             throw new DeserializationInitializationException(
                 'Given class is not a model class.'
             );

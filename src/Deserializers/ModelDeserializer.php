@@ -9,7 +9,8 @@ declare(strict_types=1);
 namespace NanoSector\Models\Deserializers;
 
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Helpers\DeserializerHelper;
+use NanoSector\Models\Helpers\ReflectionHelper;
+use NanoSector\Models\Model;
 
 class ModelDeserializer implements DeserializerInterface
 {
@@ -28,7 +29,7 @@ class ModelDeserializer implements DeserializerInterface
      */
     public function __construct(string $modelClass)
     {
-        if (!DeserializerHelper::isModel($modelClass)) {
+        if (!ReflectionHelper::isModel($modelClass)) {
             throw new DeserializationInitializationException(
                 'Cannot create a deserializer out of non-model class ' . $modelClass
             );
@@ -40,9 +41,9 @@ class ModelDeserializer implements DeserializerInterface
     /**
      * @param array $value
      *
-     * @return mixed
+     * @return \NanoSector\Models\Model
      */
-    public function deserialize($value)
+    public function deserialize($value): Model
     {
         return new $this->modelClass($value);
     }

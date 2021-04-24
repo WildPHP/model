@@ -9,38 +9,12 @@ declare(strict_types=1);
 namespace NanoSector\Models\Helpers;
 
 use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Exceptions\TypeDefinitionException;
-use NanoSector\Models\Factories\DeserializerFactoryProducer;
 use NanoSector\Models\Model;
-use NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter;
 use ReflectionClass;
 use ReflectionException;
 
-class DeserializerHelper
+class ReflectionHelper
 {
-
-    /**
-     * @param DeserializerInterface|string|string[] $wanted
-     *
-     * @return \NanoSector\Models\Deserializers\DeserializerInterface|null
-     */
-    public static function getOrNew($wanted): ?DeserializerInterface
-    {
-        if ($wanted === null || $wanted instanceof DeserializerInterface) {
-            return $wanted;
-        }
-
-        try {
-            $typeDefinition = TypeDefinitionInterpreter::interpret($wanted);
-
-            return DeserializerFactoryProducer::fromTypeDefinition(
-                $typeDefinition
-            )->getDeserializer();
-        } catch (DeserializationInitializationException | TypeDefinitionException $e) {
-            return null;
-        }
-    }
 
     /**
      * Determine whether a given class is a deserializer.
@@ -86,4 +60,19 @@ class DeserializerHelper
         }
     }
 
+    /**
+     * Determines whether the given class has any hard dependencies required to construct it.
+     *
+     * @param string $class
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public static function hasDependencies(string $class): bool
+    {
+        $reflection = new ReflectionClass($class);
+        $constructor = $reflection->getConstructor();
+
+        return $constructor === null || $constructor->getNumberOfRequiredParameters() > 0;
+    }
 }

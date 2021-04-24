@@ -10,7 +10,8 @@ namespace NanoSector\Models\Factories;
 
 use NanoSector\Models\Deserializers\DeserializerInterface;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Helpers\DeserializerHelper;
+use NanoSector\Models\Helpers\ReflectionHelper;
+use ReflectionException;
 
 class DeserializerFactory implements DeserializerFactoryInterface
 {
@@ -27,9 +28,24 @@ class DeserializerFactory implements DeserializerFactoryInterface
      */
     public function __construct(string $className)
     {
-        if (!DeserializerHelper::isDeserializer($className)) {
+        if (!ReflectionHelper::isDeserializer($className)) {
             throw new DeserializationInitializationException(
                 'Given class is not a deserializer.'
+            );
+        }
+
+        try {
+            if (!ReflectionHelper::hasDependencies($className)) {
+                throw new DeserializationInitializationException(
+                    'The given deserializer class has dependencies which cannot be satisfied. ' .
+                    'Please instantiate this object yourself and pass its instance as a parameter instead of the class name.'
+                );
+            }
+        } catch (ReflectionException $e) {
+            throw new DeserializationInitializationException(
+                'Reflection of the given class failed; refusing to instantiate it.',
+                0,
+                $e
             );
         }
 

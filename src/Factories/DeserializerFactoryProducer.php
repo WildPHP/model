@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace NanoSector\Models\Factories;
 
-use NanoSector\Models\Helpers\DeserializerHelper;
+use NanoSector\Models\Helpers\ReflectionHelper;
 use NanoSector\Models\TypeDefinitions\ArrayTypeDefinition;
 use NanoSector\Models\TypeDefinitions\TypeDefinitionInterface;
 
@@ -32,7 +32,7 @@ class DeserializerFactoryProducer
             );
         }
 
-        if (DeserializerHelper::isModel($typeDefinition->toDefinition())) {
+        if (ReflectionHelper::isModel($typeDefinition->toDefinition())) {
             return new ModelDeserializerFactory(
                 $typeDefinition->toDefinition()
             );

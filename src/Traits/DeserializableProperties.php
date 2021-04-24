@@ -8,27 +8,14 @@ declare(strict_types=1);
 
 namespace NanoSector\Models\Traits;
 
-use DateTime;
-use NanoSector\Models\Deserializers\DateTimeDeserializer;
 use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Deserializers\FloatDeserializer;
+use NanoSector\Models\Deserializers\GlobalDeserializerRegistry;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
 use NanoSector\Models\Factories\DeserializerFactoryProducer;
 use NanoSector\Models\Helpers\DeserializerHelper;
 
 trait DeserializableProperties
 {
-
-    /**
-     * List of types to automatically deserialize.
-     *
-     * @var array<string, string|DeserializerInterface>
-     */
-    protected $typeDeserializers = [
-        'double' => FloatDeserializer::class,
-        DateTime::class => DateTimeDeserializer::class,
-    ];
-
     /**
      * List of deserializers to use for the specified keys.
      *
@@ -48,37 +35,19 @@ trait DeserializableProperties
             }
 
             try {
+                // First, attempt to create a deserializer from the user's own type definition.
                 $deserializer = DeserializerFactoryProducer::fromTypeDefinition(
                     $wantedType
                 )->getDeserializer();
                 $this->deserializers[$key] = $deserializer;
             } catch (DeserializationInitializationException $e) {
+                // If this fails, try the global registry.
+                if (($global = GlobalDeserializerRegistry::getForTypeDefinition($wantedType)) !== null) {
+                    $this->deserializers[$key] = $global;
+                }
                 continue;
             }
         }
-    }
-
-    /**
-     * @param array|string $type
-     *
-     * @return DeserializerInterface|null
-     */
-    private function getTypeDeserializer($type): ?DeserializerInterface
-    {
-        if (!is_string($type) || !array_key_exists(
-                $type,
-                $this->typeDeserializers
-            )) {
-            return null;
-        }
-
-        $deserializer = DeserializerHelper::getOrNew($this->typeDeserializers[$type]);
-
-        if ($deserializer !== $this->typeDeserializers[$type]) {
-            $this->typeDeserializers[$type] = $deserializer;
-        }
-
-        return $deserializer;
     }
 
     /**
@@ -105,16 +74,14 @@ trait DeserializableProperties
     }
 
     /**
-     * @param string       $name
-     * @param mixed        $value
-     * @param string|array $wantedType
+     * @param string $name
+     * @param mixed  $value
      *
      * @return bool
      */
-    private function canDeserialize(string $name, $value, $wantedType): bool
+    private function canDeserialize(string $name, $value): bool
     {
-        $deserializer = $this->getDeserializer($name)
-            ?? $this->getTypeDeserializer($wantedType);
+        $deserializer = $this->getDeserializer($name);
 
         return $deserializer !== null && $deserializer->canDeserialize($value);
     }
@@ -122,16 +89,14 @@ trait DeserializableProperties
     /**
      * Deserializes a given key/value pair.
      *
-     * @param string       $name
-     * @param mixed        $value
-     * @param string|array $wantedType
+     * @param string $name
+     * @param mixed  $value
      *
      * @return mixed
      */
-    private function deserialize(string $name, $value, $wantedType)
+    private function deserialize(string $name, $value)
     {
-        $deserializer = $this->getDeserializer($name)
-            ?? $this->getTypeDeserializer($wantedType);
+        $deserializer = $this->getDeserializer($name);
 
         if ($deserializer === null) {
             return $value;
