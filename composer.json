@@ -8,7 +8,11 @@
   },
   "autoload": {
     "psr-4": {
-      "NanoSector\\Models\\": "src/",
+      "NanoSector\\Models\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "NanoSector\\Models\\Tests\\": "tests/"
     }
   },
