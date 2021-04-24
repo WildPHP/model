@@ -4,6 +4,8 @@
  * See LICENSE.md in the project root.
  */
 
+declare(strict_types=1);
+
 namespace NanoSector\Models\Deserializers;
 
 use DateTime;
@@ -27,7 +29,9 @@ class DateTimeDeserializer implements DeserializerInterface
 
         // Try ISO8601 first.
         $date = DateTime::createFromFormat(DateTimeInterface::ATOM, $value)
+            // Then a simple date format...
             ?: DateTime::createFromFormat('!Y-m-d', $value)
+                // And finally just time.
                 ?: DateTime::createFromFormat('H:i:s', $value);
 
         if ($date === false) {

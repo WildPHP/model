@@ -4,6 +4,8 @@
  * See LICENSE.md in the project root.
  */
 
+declare(strict_types=1);
+
 namespace NanoSector\Models\Traits;
 
 use DateTime;

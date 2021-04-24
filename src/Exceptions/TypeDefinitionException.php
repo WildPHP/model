@@ -4,11 +4,10 @@
  * See LICENSE.md in the project root.
  */
 
+declare(strict_types=1);
+
 namespace NanoSector\Models\Exceptions;
 
 use Exception;
 
-class TypeDefinitionException extends Exception
-{
-
-}
+class TypeDefinitionException extends Exception { }
