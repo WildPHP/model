@@ -84,8 +84,7 @@ abstract class Model
     /**
      * Inferred type definitions for the settable properties.
      *
-     * @var array<string,
-     *   \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
+     * @var array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
      */
     private $typeDefinitions;
 
@@ -271,7 +270,7 @@ abstract class Model
     }
 
     /**
-     * Tries to set a given property on this object.
+     * Set a property on this object.
      *
      * @param  string  $name
      * @param  mixed  $value

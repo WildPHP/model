@@ -35,7 +35,7 @@ trait DeserializableProperties
      */
     protected function inferDeserializers(): void
     {
-        foreach ($this->settable as $key => $wantedType) {
+        foreach ($this->typeDefinitions as $key => $wantedType) {
             // Assume the user knows best and skip if they have overridden this deserializer
             if (array_key_exists($key, $this->deserializers)) {
                 continue;

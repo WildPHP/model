@@ -3,6 +3,8 @@
 namespace NanoSector\Models\Factories;
 
 use NanoSector\Models\Helpers\DeserializerHelper;
+use NanoSector\Models\TypeDefinitions\ArrayTypeDefinition;
+use NanoSector\Models\TypeDefinitions\TypeDefinitionInterface;
 
 class DeserializerFactoryProducer
 {
@@ -10,23 +12,27 @@ class DeserializerFactoryProducer
     /**
      * Creates a deserializer from a given
      *
-     * @param string|string[] $definition
+     * @param  \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface  $typeDefinition
      *
      * @return \NanoSector\Models\Factories\DeserializerFactoryInterface
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
      */
-    public static function fromTypeDefinition($definition): DeserializerFactoryInterface
-    {
-        if (is_array($definition)) {
+    public static function fromTypeDefinition(
+      TypeDefinitionInterface $typeDefinition
+    ): DeserializerFactoryInterface {
+        if ($typeDefinition instanceof ArrayTypeDefinition) {
             return new ArrayDeserializerFactory(
-              new DeserializerFactory($definition[0])
+              self::fromTypeDefinition($typeDefinition->getContentDefinition())
             );
         }
 
-        if (DeserializerHelper::isModel($definition)) {
-            return new ModelDeserializerFactory($definition);
+        if (DeserializerHelper::isModel($typeDefinition->toDefinition())) {
+            return new ModelDeserializerFactory(
+              $typeDefinition->toDefinition()
+            );
         }
 
-        return new DeserializerFactory($definition);
+        return new DeserializerFactory($typeDefinition->toDefinition());
     }
+
 }

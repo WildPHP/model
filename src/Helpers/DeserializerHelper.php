@@ -6,6 +6,8 @@ use NanoSector\Models\Deserializers\DeserializerInterface;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
 use NanoSector\Models\Factories\DeserializerFactoryProducer;
 use NanoSector\Models\Model;
+use NanoSector\Models\TypeDefinitions\TypeDefinitionException;
+use NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter;
 use ReflectionClass;
 use ReflectionException;
 
@@ -13,7 +15,7 @@ class DeserializerHelper
 {
 
     /**
-     * @param DeserializerInterface|string|string[] $wanted
+     * @param  DeserializerInterface|string|string[]  $wanted
      *
      * @return \NanoSector\Models\Deserializers\DeserializerInterface|null
      */
@@ -24,10 +26,12 @@ class DeserializerHelper
         }
 
         try {
+            $typeDefinition = TypeDefinitionInterpreter::interpret($wanted);
+
             return DeserializerFactoryProducer::fromTypeDefinition(
-              $wanted
+              $typeDefinition
             )->getDeserializer();
-        } catch (DeserializationInitializationException $e) {
+        } catch (DeserializationInitializationException | TypeDefinitionException $e) {
             return null;
         }
     }
