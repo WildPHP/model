@@ -46,7 +46,7 @@ class TypeDefinitionInterpreter
             return new ClassTypeDefinition($definition);
         }
 
-        return new GetTypeTypeDefinition($definition);
+        return new PrimitiveTypeDefinition($definition);
     }
 
 }

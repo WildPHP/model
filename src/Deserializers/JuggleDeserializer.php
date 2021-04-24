@@ -9,32 +9,32 @@ declare(strict_types=1);
 namespace NanoSector\Models\Deserializers;
 
 use NanoSector\Models\Exceptions\DeserializationException;
-use NanoSector\Models\TypeDefinitions\GetTypeTypeDefinition;
+use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
 
 class JuggleDeserializer implements DeserializerInterface
 {
     public const JUGGLE_TYPES = [
-        GetTypeTypeDefinition::STRING,
-        GetTypeTypeDefinition::INTEGER,
-        GetTypeTypeDefinition::FLOAT,
-        GetTypeTypeDefinition::BOOLEAN
+        PrimitiveTypeDefinition::STRING,
+        PrimitiveTypeDefinition::INTEGER,
+        PrimitiveTypeDefinition::FLOAT,
+        PrimitiveTypeDefinition::BOOLEAN
     ];
 
     /**
      * @var string
      */
-    private $getTypeType;
+    private $primitiveType;
 
     /**
      * JuggleDeserializer constructor.
      *
-     * @param string $getTypeType
+     * @param string $primitiveType
      *
-     * @see GetTypeTypeDefinition::GETTYPE_VALUES
+     * @see PrimitiveTypeDefinition::PRIMITIVE_TYPES
      */
-    public function __construct(string $getTypeType)
+    public function __construct(string $primitiveType)
     {
-        $this->getTypeType = $getTypeType;
+        $this->primitiveType = $primitiveType;
     }
 
     /**
@@ -45,22 +45,22 @@ class JuggleDeserializer implements DeserializerInterface
      */
     public function deserialize($value)
     {
-        switch ($this->getTypeType) {
-            case GetTypeTypeDefinition::BOOLEAN:
+        switch ($this->primitiveType) {
+            case PrimitiveTypeDefinition::BOOLEAN:
                 return (bool)$value;
 
-            case GetTypeTypeDefinition::FLOAT:
+            case PrimitiveTypeDefinition::FLOAT:
                 return (double)$value;
 
-            case GetTypeTypeDefinition::INTEGER:
+            case PrimitiveTypeDefinition::INTEGER:
                 return (int)$value;
 
-            case GetTypeTypeDefinition::STRING:
+            case PrimitiveTypeDefinition::STRING:
                 return (string)$value;
 
             default:
                 throw new DeserializationException(
-                    'Cannot deserialize type ' . $this->getTypeType . ' by type juggling'
+                    'Cannot deserialize type ' . $this->primitiveType . ' by type juggling'
                 );
         }
     }

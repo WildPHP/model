@@ -10,7 +10,7 @@ namespace NanoSector\Models\TypeDefinitions;
 
 use NanoSector\Models\Exceptions\TypeDefinitionException;
 
-class GetTypeTypeDefinition implements TypeDefinitionInterface
+class PrimitiveTypeDefinition implements TypeDefinitionInterface
 {
 
     public const BOOLEAN = 'boolean';
@@ -33,7 +33,7 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
      * @var string[]
      * @see \gettype()
      */
-    public const GETTYPE_VALUES = [
+    public const PRIMITIVE_TYPES = [
         self::BOOLEAN,
         self::INTEGER,
         self::FLOAT,
@@ -57,9 +57,9 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
      */
     public function __construct(string $wantedType)
     {
-        if (!in_array($wantedType, self::GETTYPE_VALUES)) {
+        if (!in_array($wantedType, self::PRIMITIVE_TYPES)) {
             throw new TypeDefinitionException(
-                'Unknown gettype value passed to GetTypeTypeDefinition'
+                'Unknown gettype value passed to PrimitiveTypeDefinition'
             );
         }
 

@@ -8,7 +8,7 @@ namespace NanoSector\Models\Tests\Samples;
 
 
 use NanoSector\Models\Model;
-use NanoSector\Models\TypeDefinitions\GetTypeTypeDefinition;
+use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ScalarArrayModel
@@ -24,10 +24,10 @@ use NanoSector\Models\TypeDefinitions\GetTypeTypeDefinition;
 class ScalarArrayModel extends Model
 {
     protected $settable = [
-      'strings' => [GetTypeTypeDefinition::STRING],
-      'ints' => [GetTypeTypeDefinition::INTEGER],
-      'bools' => [GetTypeTypeDefinition::BOOLEAN],
-      'floats' => [GetTypeTypeDefinition::FLOAT],
-      'nulls' => [GetTypeTypeDefinition::NULL],
+      'strings' => [PrimitiveTypeDefinition::STRING],
+      'ints' => [PrimitiveTypeDefinition::INTEGER],
+      'bools' => [PrimitiveTypeDefinition::BOOLEAN],
+      'floats' => [PrimitiveTypeDefinition::FLOAT],
+      'nulls' => [PrimitiveTypeDefinition::NULL],
     ];
 }
