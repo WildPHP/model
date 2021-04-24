@@ -57,7 +57,7 @@ abstract class Model
      *
      * @var array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
      */
-    protected $typeDefinitions;
+    protected $typeDefinitionMap;
 
     /**
      * Model constructor.
@@ -74,7 +74,7 @@ abstract class Model
             );
         }
 
-        $this->typeDefinitions = TypeDefinitionInterpreter::createDefinitionMap(
+        $this->typeDefinitionMap = TypeDefinitionInterpreter::createDefinitionMap(
             $this->settable
         );
 
@@ -96,7 +96,7 @@ abstract class Model
             return false;
         }
 
-        $wantedTypeDefinition = $this->typeDefinitions[$key];
+        $wantedTypeDefinition = $this->typeDefinitionMap[$key];
 
         return $wantedTypeDefinition->validate($value);
     }
@@ -106,7 +106,7 @@ abstract class Model
      */
     protected function addDefaults(): void
     {
-        foreach ($this->typeDefinitions as $key => $definition) {
+        foreach ($this->typeDefinitionMap as $key => $definition) {
             if (array_key_exists($key, $this->properties)) {
                 continue;
             }

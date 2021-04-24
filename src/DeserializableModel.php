@@ -25,7 +25,7 @@ abstract class DeserializableModel extends Model
         // after the type definitions have been created.
         parent::__construct([]);
 
-        $this->inferDeserializers($this->typeDefinitions);
+        $this->inferDeserializers($this->typeDefinitionMap);
         $this->hydrate($properties);
     }
 
