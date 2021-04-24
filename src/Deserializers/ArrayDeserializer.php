@@ -28,6 +28,9 @@ class ArrayDeserializer implements DeserializerInterface
     }
 
     /**
+     * @param array<string|int, mixed> $value
+     *
+     * @return array<string|int, mixed>
      * @throws \NanoSector\Models\Exceptions\DeserializationException
      */
     public function deserialize($value): array
@@ -47,6 +50,9 @@ class ArrayDeserializer implements DeserializerInterface
         return $value;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function canDeserialize($value): bool
     {
         return is_array($value);

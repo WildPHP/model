@@ -65,6 +65,9 @@ class JuggleDeserializer implements DeserializerInterface
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     public function canDeserialize($value): bool
     {
         return true;

@@ -10,7 +10,17 @@ namespace NanoSector\Models\Deserializers;
 
 interface DeserializerInterface
 {
+    /**
+     * @param mixed $value
+     *
+     * @return mixed
+     */
     public function deserialize($value);
 
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
     public function canDeserialize($value): bool;
 }

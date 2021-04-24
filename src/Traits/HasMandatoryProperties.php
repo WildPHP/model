@@ -20,15 +20,12 @@ trait HasMandatoryProperties
     /**
      * Checks whether all mandatory properties exist in the given array.
      *
-     * @param array $array
+     * @param array<string, mixed> $array
      *
      * @return bool
      */
     private function satisfiesMandatoryProperties(array $array): bool
     {
-        return array_intersect(
-                array_keys($array),
-                $this->mandatory
-            ) === $this->mandatory;
+        return array_intersect(array_keys($array), $this->mandatory) === $this->mandatory;
     }
 }

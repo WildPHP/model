@@ -49,7 +49,7 @@ class ArrayTypeDefinition implements TypeDefinitionInterface
 
     /**
      * @inheritDoc
-     * @return array
+     * @return array<string|array>
      */
     public function toDefinition(): array
     {
@@ -63,5 +63,4 @@ class ArrayTypeDefinition implements TypeDefinitionInterface
     {
         return $this->contentDefinition;
     }
-
 }

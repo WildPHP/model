@@ -10,4 +10,7 @@ namespace NanoSector\Models\Exceptions;
 
 use Exception;
 
-class TypeDefinitionException extends Exception { }
+class TypeDefinitionException extends Exception
+{
+
+}

@@ -46,5 +46,4 @@ class ModelDeserializerFactory implements DeserializerFactoryInterface
     {
         return new ModelDeserializer($this->modelClass);
     }
-
 }

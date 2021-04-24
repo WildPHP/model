@@ -39,7 +39,7 @@ class ModelDeserializer implements DeserializerInterface
     }
 
     /**
-     * @param array $value
+     * @param array<string, mixed> $value
      *
      * @return \NanoSector\Models\Model
      */
@@ -57,5 +57,4 @@ class ModelDeserializer implements DeserializerInterface
     {
         return is_array($value);
     }
-
 }

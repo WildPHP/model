@@ -14,9 +14,9 @@ class TypeDefinitionInterpreter
     /**
      * Generates a definition map from a given
      *
-     * @param array $array
+     * @param array<string, string|string[]> $array
      *
-     * @return array
+     * @return array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
      * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
     public static function createDefinitionMap(array $array): array
@@ -48,5 +48,4 @@ class TypeDefinitionInterpreter
 
         return new PrimitiveTypeDefinition($definition);
     }
-
 }

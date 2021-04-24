@@ -18,7 +18,7 @@ class DateTimeDeserializer implements DeserializerInterface
     /**
      * @param mixed $value
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      * @throws \NanoSector\Models\Exceptions\DeserializationException
      */
     public function deserialize($value): DateTimeInterface
@@ -41,9 +41,11 @@ class DateTimeDeserializer implements DeserializerInterface
         return $date;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function canDeserialize($value): bool
     {
         return is_string($value);
     }
-
 }

@@ -33,5 +33,4 @@ class ArrayDeserializerFactory implements DeserializerFactoryInterface
     {
         return new ArrayDeserializer($this->parentDeserializerFactory->getDeserializer());
     }
-
 }

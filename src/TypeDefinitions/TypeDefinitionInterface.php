@@ -8,6 +8,11 @@ declare(strict_types=1);
 
 namespace NanoSector\Models\TypeDefinitions;
 
+/**
+ * Interface TypeDefinitionInterface
+ *
+ * @package NanoSector\Models\TypeDefinitions
+ */
 interface TypeDefinitionInterface
 {
 
@@ -30,8 +35,7 @@ interface TypeDefinitionInterface
     /**
      * Returns the readable representation of this type definition.
      *
-     * @return mixed
+     * @return string|class-string|string[]|class-string[]
      */
     public function toDefinition();
-
 }

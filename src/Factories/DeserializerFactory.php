@@ -22,7 +22,7 @@ class DeserializerFactory implements DeserializerFactoryInterface
     private $className;
 
     /**
-     * @param string $className
+     * @param class-string $className
      *
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
      */
@@ -38,7 +38,7 @@ class DeserializerFactory implements DeserializerFactoryInterface
             if (!ReflectionHelper::hasDependencies($className)) {
                 throw new DeserializationInitializationException(
                     'The given deserializer class has dependencies which cannot be satisfied. ' .
-                    'Please instantiate this object yourself and pass its instance as a parameter instead of the class name.'
+                    'Please instantiate this object yourself.'
                 );
             }
         } catch (ReflectionException $e) {
@@ -56,5 +56,4 @@ class DeserializerFactory implements DeserializerFactoryInterface
     {
         return new $this->className();
     }
-
 }

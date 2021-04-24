@@ -63,7 +63,7 @@ class ReflectionHelper
     /**
      * Determines whether the given class has any hard dependencies required to construct it.
      *
-     * @param string $class
+     * @param class-string $class
      *
      * @return bool
      * @throws \ReflectionException

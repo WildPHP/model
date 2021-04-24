@@ -59,5 +59,4 @@ class ClassTypeDefinition implements TypeDefinitionInterface
     {
         return $this->wantedClass;
     }
-
 }

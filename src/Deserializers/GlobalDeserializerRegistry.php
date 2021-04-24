@@ -75,8 +75,8 @@ class GlobalDeserializerRegistry
     /**
      * Add a new global deserializer.
      *
-     * @param string                                                        $type
-     * @param string|\NanoSector\Models\Deserializers\DeserializerInterface $deserializer
+     * @param string                                                              $type
+     * @param class-string|\NanoSector\Models\Deserializers\DeserializerInterface $deserializer
      *
      * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
      */

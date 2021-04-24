@@ -59,8 +59,7 @@ trait DeserializableProperties
      */
     private function getDeserializer(string $key): ?DeserializerInterface
     {
-        if (
-            !property_exists($this, 'deserializers') ||
+        if (!property_exists($this, 'deserializers') ||
             !array_key_exists($key, $this->deserializers)
         ) {
             return null;
@@ -68,7 +67,7 @@ trait DeserializableProperties
 
         $deserializer = DeserializerHelper::getOrNew($this->deserializers[$key]);
 
-        if ($deserializer !== $this->deserializers[$key]) {
+        if ($deserializer !== null && $deserializer !== $this->deserializers[$key]) {
             $this->deserializers[$key] = $deserializer;
         }
 
@@ -106,5 +105,4 @@ trait DeserializableProperties
 
         return $deserializer->deserialize($value);
     }
-
 }

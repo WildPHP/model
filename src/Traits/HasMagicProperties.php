@@ -81,7 +81,7 @@ trait HasMagicProperties
      * Returns the properties in this object as an
      * associative array.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

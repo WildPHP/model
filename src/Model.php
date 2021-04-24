@@ -141,7 +141,7 @@ abstract class Model
      *
      * @throws \NanoSector\Models\Exceptions\ModelException
      */
-    public function __set(string $key, $value)
+    public function __set(string $key, $value): void
     {
         if (!$this->isPropertyKnown($key)) {
             if (!$this->ignoreUnknownProperties) {
@@ -169,10 +169,10 @@ abstract class Model
      */
     public function isPropertyKnown(string $key): bool
     {
-        return in_array($key, $this->settable, true) || array_key_exists(
+        return in_array($key, $this->settable, true)
+            || array_key_exists(
                 $key,
                 $this->settable
             );
     }
-
 }

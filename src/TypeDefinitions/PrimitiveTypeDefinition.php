@@ -105,5 +105,4 @@ class PrimitiveTypeDefinition implements TypeDefinitionInterface
     {
         return $this->wantedType;
     }
-
 }

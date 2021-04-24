@@ -23,7 +23,7 @@ class DeserializerHelper
      */
     public static function getOrNew($wanted): ?DeserializerInterface
     {
-        if ($wanted === null || $wanted instanceof DeserializerInterface) {
+        if ($wanted instanceof DeserializerInterface) {
             return $wanted;
         }
 

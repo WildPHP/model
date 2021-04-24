@@ -40,7 +40,7 @@ abstract class DeserializableModel extends Model
     /**
      * @inheritDoc
      */
-    public function __set(string $key, $value)
+    public function __set(string $key, $value): void
     {
         if ($this->canDeserialize($key, $value)) {
             $value = $this->deserialize($key, $value);
