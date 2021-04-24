@@ -4,9 +4,9 @@ namespace NanoSector\Models\Helpers;
 
 use NanoSector\Models\Deserializers\DeserializerInterface;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
+use NanoSector\Models\Exceptions\TypeDefinitionException;
 use NanoSector\Models\Factories\DeserializerFactoryProducer;
 use NanoSector\Models\Model;
-use NanoSector\Models\TypeDefinitions\TypeDefinitionException;
 use NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter;
 use ReflectionClass;
 use ReflectionException;

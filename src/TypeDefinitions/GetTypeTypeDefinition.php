@@ -4,6 +4,8 @@
 namespace NanoSector\Models\TypeDefinitions;
 
 
+use NanoSector\Models\Exceptions\TypeDefinitionException;
+
 class GetTypeTypeDefinition implements TypeDefinitionInterface
 {
 
@@ -47,7 +49,7 @@ class GetTypeTypeDefinition implements TypeDefinitionInterface
      *
      * @param  string  $wantedType
      *
-     * @throws \NanoSector\Models\TypeDefinitions\TypeDefinitionException
+     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
     public function __construct(string $wantedType)
     {

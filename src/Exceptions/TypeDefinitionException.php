@@ -1,6 +1,6 @@
 <?php
 
-namespace NanoSector\Models\TypeDefinitions;
+namespace NanoSector\Models\Exceptions;
 
 use Exception;
 

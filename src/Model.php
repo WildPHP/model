@@ -93,7 +93,7 @@ abstract class Model
      *
      * @param  array<string, mixed>  $properties  default properties to set
      *
-     * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\TypeDefinitions\TypeDefinitionException
+     * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
      */
     final public function __construct(array $properties = [])
     {
@@ -225,7 +225,7 @@ abstract class Model
      * @param  array  $array
      *
      * @return static[]
-     * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\TypeDefinitions\TypeDefinitionException
+     * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
      */
     public static function many(array $array): array
     {

@@ -13,7 +13,7 @@ class TypeDefinitionInterpreter
      * @param  array  $array
      *
      * @return array
-     * @throws \NanoSector\Models\TypeDefinitions\TypeDefinitionException
+     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
     public static function createDefinitionMap(array $array): array
     {
@@ -30,7 +30,7 @@ class TypeDefinitionInterpreter
      *
      * @param  string|string[]  $definition
      *
-     * @throws \NanoSector\Models\TypeDefinitions\TypeDefinitionException
+     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
     public static function interpret($definition): TypeDefinitionInterface
     {

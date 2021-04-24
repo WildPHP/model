@@ -4,6 +4,8 @@
 namespace NanoSector\Models\TypeDefinitions;
 
 
+use NanoSector\Models\Exceptions\TypeDefinitionException;
+
 class ClassTypeDefinition implements TypeDefinitionInterface
 {
 
@@ -17,7 +19,7 @@ class ClassTypeDefinition implements TypeDefinitionInterface
      *
      * @param  string  $wantedClass
      *
-     * @throws \NanoSector\Models\TypeDefinitions\TypeDefinitionException
+     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
      */
     public function __construct(string $wantedClass)
     {
