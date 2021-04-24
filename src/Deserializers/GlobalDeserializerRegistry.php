@@ -19,7 +19,7 @@ class GlobalDeserializerRegistry
     /**
      * List of types to automatically deserialize.
      *
-     * @var array<string, string|DeserializerInterface>
+     * @var array<string, DeserializerInterface>
      */
     protected static $typeDeserializers = [];
 
