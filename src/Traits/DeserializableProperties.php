@@ -25,10 +25,12 @@ trait DeserializableProperties
 
     /**
      * Infer deserializers from settable types.
+     *
+     * @param array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface> $typeDefinitions
      */
-    protected function inferDeserializers(): void
+    protected function inferDeserializers(array $typeDefinitions): void
     {
-        foreach ($this->typeDefinitions as $key => $wantedType) {
+        foreach ($typeDefinitions as $key => $wantedType) {
             // Assume the user knows best and skip if they have overridden this deserializer
             if (array_key_exists($key, $this->deserializers)) {
                 continue;
