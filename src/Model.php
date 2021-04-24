@@ -27,7 +27,7 @@ abstract class Model
      *
      * @var bool
      */
-    protected $ignoreUnknownProperties = true;
+    protected $throwOnUnknown = false;
 
     /**
      * Properties which can be assigned in the type definition format.
@@ -144,7 +144,7 @@ abstract class Model
     public function __set(string $key, $value): void
     {
         if (!$this->isPropertyKnown($key)) {
-            if (!$this->ignoreUnknownProperties) {
+            if ($this->throwOnUnknown) {
                 throw new ModelException('Cannot set property with key ' . $key);
             }
 

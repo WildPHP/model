@@ -42,9 +42,10 @@ trait DeserializableProperties
                     $wantedType
                 )->getDeserializer();
                 $this->deserializers[$key] = $deserializer;
-            } catch (DeserializationInitializationException $e) {
+            } catch (DeserializationInitializationException $exception) {
                 // If this fails, try the global registry.
-                if (($global = GlobalDeserializerRegistry::getForTypeDefinition($wantedType)) !== null) {
+                $global = GlobalDeserializerRegistry::getForTypeDefinition($wantedType);
+                if ($global !== null) {
                     $this->deserializers[$key] = $global;
                 }
                 continue;

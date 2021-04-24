@@ -28,7 +28,7 @@ class ArrayDeserializer implements DeserializerInterface
     }
 
     /**
-     * @param array<string|int, mixed> $value
+     * @param mixed $value
      *
      * @return array<string|int, mixed>
      * @throws \NanoSector\Models\Exceptions\DeserializationException

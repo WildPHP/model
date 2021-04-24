@@ -68,7 +68,16 @@
       </option>
       <option name="migratedIntoUserSpace" value="true" />
     </inspection_tool>
-    <inspection_tool class="MessDetectorValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="MessDetectorValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="customRulesets">
+        <list>
+          <RulesetDescriptor>
+            <option name="name" value="Model PHPMD rule set" />
+            <option name="path" value="$PROJECT_DIR$/phpmd_ruleset.xml" />
+          </RulesetDescriptor>
+        </list>
+      </option>
+    </inspection_tool>
     <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="EXTENSIONS" value="php,js,css,inc" />
     </inspection_tool>

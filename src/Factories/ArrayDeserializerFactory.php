@@ -17,20 +17,20 @@ class ArrayDeserializerFactory implements DeserializerFactoryInterface
     /**
      * @var \NanoSector\Models\Factories\DeserializerFactoryInterface
      */
-    private $parentDeserializerFactory;
+    private $parentFactory;
 
     /**
      * ArrayDeserializerFactory constructor.
      *
-     * @param \NanoSector\Models\Factories\DeserializerFactoryInterface $parentDeserializerFactory
+     * @param \NanoSector\Models\Factories\DeserializerFactoryInterface $parentFactory
      */
-    public function __construct(DeserializerFactoryInterface $parentDeserializerFactory)
+    public function __construct(DeserializerFactoryInterface $parentFactory)
     {
-        $this->parentDeserializerFactory = $parentDeserializerFactory;
+        $this->parentFactory = $parentFactory;
     }
 
     public function getDeserializer(): DeserializerInterface
     {
-        return new ArrayDeserializer($this->parentDeserializerFactory->getDeserializer());
+        return new ArrayDeserializer($this->parentFactory->getDeserializer());
     }
 }
