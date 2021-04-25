@@ -13,8 +13,14 @@ use DateTime;
 use NanoSector\Models\Exceptions\DeserializationInitializationException;
 use NanoSector\Models\Factories\DeserializerFactory;
 use NanoSector\Models\Helpers\ReflectionHelper;
+use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
 use NanoSector\Models\TypeDefinitions\TypeDefinitionInterface;
 
+/**
+ * Class GlobalDeserializerRegistry
+ *
+ * @package NanoSector\Models\Deserializers
+ */
 class GlobalDeserializerRegistry
 {
     /**
@@ -61,9 +67,10 @@ class GlobalDeserializerRegistry
     public static function juggle(): void
     {
         try {
-            foreach (JuggleDeserializer::JUGGLE_TYPES as $type) {
-                self::add($type, new JuggleDeserializer($type));
-            }
+            self::add(PrimitiveTypeDefinition::BOOLEAN, new BooleanDeserializer());
+            self::add(PrimitiveTypeDefinition::FLOAT, new FloatDeserializer());
+            self::add(PrimitiveTypeDefinition::INTEGER, new IntegerDeserializer());
+            self::add(PrimitiveTypeDefinition::STRING, new StringDeserializer());
         } catch (DeserializationInitializationException $e) {
             throw new DeserializationInitializationException(
                 'Could not initiate built-in deserializers. Please file a bug!',

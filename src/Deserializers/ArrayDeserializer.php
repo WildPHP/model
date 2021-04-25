@@ -56,6 +56,16 @@ class ArrayDeserializer implements DeserializerInterface
      */
     public function canDeserialize($value): bool
     {
-        return is_array($value);
+        if (!is_array($value)) {
+            return false;
+        }
+
+        foreach ($value as $item) {
+            if (!$this->deserializer->canDeserialize($item)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

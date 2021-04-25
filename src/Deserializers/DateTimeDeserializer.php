@@ -13,8 +13,30 @@ use DateTime;
 use DateTimeInterface;
 use NanoSector\Models\Exceptions\DeserializationException;
 
+/**
+ * Class DateTimeDeserializer
+ *
+ * @package NanoSector\Models\Deserializers
+ */
 class DateTimeDeserializer implements DeserializerInterface
 {
+    /**
+     * Regex for matching a date in ISO8601 format.
+     */
+    public const ATOM_REGEX = /** @lang RegExp */
+        '/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}/';
+
+    /**
+     * Regex for matching a date in format YYYY-MM-DD (Y-m-d)
+     */
+    public const DATE_REGEX = /** @lang RegExp */
+        '/\d{4}-\d{2}-\d{2}/';
+
+    /**
+     * Regex for matching a time string in format HH:MM:SS (H:i:s)
+     */
+    public const TIME_REGEX = /** @lang RegExp */
+        '/\d{2}:\d{2}:\d{2}/';
 
     /**
      * @param mixed $value
@@ -47,6 +69,12 @@ class DateTimeDeserializer implements DeserializerInterface
      */
     public function canDeserialize($value): bool
     {
-        return is_string($value);
+        return $value instanceof DateTimeInterface
+            || (is_string($value)
+                && (
+                    preg_match(self::ATOM_REGEX, $value) === 1
+                    || preg_match(self::DATE_REGEX, $value) === 1
+                    || preg_match(self::TIME_REGEX, $value) === 1
+                ));
     }
 }
