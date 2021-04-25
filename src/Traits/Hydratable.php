@@ -16,7 +16,7 @@ trait Hydratable
      * Setting this when guarded is set will override guarded.
      *
      * @var string[]
-     * @see \NanoSector\Models\Model::$guarded
+     * @see \NanoSector\Models\Traits\Hydratable::$guarded
      */
     protected $fillable = [];
 
@@ -25,7 +25,7 @@ trait Hydratable
      * Setting this when fillable is set has no effect.
      *
      * @var string[]
-     * @see \NanoSector\Models\Model::$fillable
+     * @see \NanoSector\Models\Traits\Hydratable::$fillable
      */
     protected $guarded = [];
 

@@ -24,17 +24,10 @@ abstract class Model
     use Hydratable;
 
     /**
-     * Whether to ignore unknown keys. False will throw an error.
-     *
-     * @var bool
-     */
-    protected $throwOnUnknown = false;
-
-    /**
      * Properties which can be assigned in the type definition format.
-     * This defines your model. For example:
+     * This defines your model structure. For example:
      *
-     * $settable = [
+     * $structure = [
      *     'firstKey'  => 'string',           // Simple string value.
      *     'secondKey' => SomeClass::class,   // Instance of SomeClass.
      * ];
@@ -42,7 +35,7 @@ abstract class Model
      * Properties can also be set in an array format by passing the desired type
      * as its first element. For example:
      *
-     * $settable = [
+     * $structure = [
      *     'firstKey'  => ['string'],         // Array of strings.
      *     'secondKey' => [SomeClass::class], // Array of SomeClass instances
      * ];
@@ -50,8 +43,9 @@ abstract class Model
      * The above examples may be mixed to create complex models.
      *
      * @var array<string, string|string[]>
+     * @see \NanoSector\Models\Model::getStructure()
      */
-    protected $settable = [];
+    protected $structure = [];
 
     /**
      * Inferred type definitions for the settable properties.
@@ -71,12 +65,12 @@ abstract class Model
     {
         if (!$this->satisfiesMandatoryProperties($properties)) {
             throw new ModelException(
-                'Model is missing one or more mandatory properties'
+                'Model was initialized without one or more mandatory parameters'
             );
         }
 
         $this->typeDefinitionMap = TypeDefinitionInterpreter::createDefinitionMap(
-            $this->settable
+            $this->getStructure()
         );
 
         $this->hydrate($properties);
@@ -91,9 +85,9 @@ abstract class Model
      *
      * @return bool
      */
-    protected function canAssignValue(string $key, $value): bool
+    public function canAssignValue(string $key, $value): bool
     {
-        if (!array_key_exists($key, $this->settable)) {
+        if (!$this->isPropertyKnown($key)) {
             return false;
         }
 
@@ -105,7 +99,7 @@ abstract class Model
     /**
      * Adds default values to the current model.
      */
-    protected function addDefaults(): void
+    public function addDefaults(): void
     {
         foreach ($this->typeDefinitionMap as $key => $definition) {
             if (array_key_exists($key, $this->properties)) {
@@ -120,18 +114,14 @@ abstract class Model
      * Set a property on this model, taking types into account.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @throws \NanoSector\Models\Exceptions\ModelException
      */
     public function __set(string $key, $value): void
     {
         if (!$this->isPropertyKnown($key)) {
-            if ($this->throwOnUnknown) {
-                throw new ModelException('Cannot set property with key ' . $key);
-            }
-
-            return;
+            throw new ModelException('Cannot set property with key ' . $key);
         }
 
         if (!$this->canAssignValue($key, $value)) {
@@ -152,10 +142,30 @@ abstract class Model
      */
     public function isPropertyKnown(string $key): bool
     {
-        return in_array($key, $this->settable, true)
-            || array_key_exists(
-                $key,
-                $this->settable
-            );
+        return array_key_exists(
+            $key,
+            $this->getStructure()
+        );
+    }
+
+    /**
+     * Returns this model's defined structure.
+     *
+     * @return array<string, string|string[]>
+     * @see \NanoSector\Models\Model::$structure
+     */
+    public function getStructure(): array
+    {
+        return $this->structure;
+    }
+
+    /**
+     * Returns the generated type definition map for this model.
+     *
+     * @return array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
+     */
+    public function getTypeDefinitionMap(): array
+    {
+        return $this->typeDefinitionMap;
     }
 }

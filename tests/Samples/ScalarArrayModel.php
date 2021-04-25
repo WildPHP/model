@@ -25,7 +25,7 @@ use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
  */
 class ScalarArrayModel extends Model
 {
-    protected $settable = [
+    protected $structure = [
       'strings' => [PrimitiveTypeDefinition::STRING],
       'ints' => [PrimitiveTypeDefinition::INTEGER],
       'bools' => [PrimitiveTypeDefinition::BOOLEAN],

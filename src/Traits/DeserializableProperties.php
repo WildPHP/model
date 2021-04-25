@@ -25,41 +25,11 @@ trait DeserializableProperties
     protected $deserializers = [];
 
     /**
-     * Infer deserializers from settable types.
-     *
-     * @param array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface> $typeDefinitions
-     */
-    protected function inferDeserializers(array $typeDefinitions): void
-    {
-        foreach ($typeDefinitions as $key => $wantedType) {
-            // Assume the user knows best and skip if they have overridden this deserializer
-            if (array_key_exists($key, $this->deserializers)) {
-                continue;
-            }
-
-            try {
-                // First, attempt to create a deserializer from the user's own type definition.
-                $deserializer = DeserializerFactoryProducer::fromTypeDefinition(
-                    $wantedType
-                )->getDeserializer();
-                $this->deserializers[$key] = $deserializer;
-            } catch (DeserializationInitializationException $exception) {
-                // If this fails, try the global registry.
-                $global = GlobalDeserializerRegistry::getForTypeDefinition($wantedType);
-                if ($global !== null) {
-                    $this->deserializers[$key] = $global;
-                }
-                continue;
-            }
-        }
-    }
-
-    /**
      * @param string $key
      *
      * @return DeserializerInterface|null
      */
-    private function getDeserializer(string $key): ?DeserializerInterface
+    public function getDeserializer(string $key): ?DeserializerInterface
     {
         if (
             !property_exists($this, 'deserializers') ||
@@ -83,7 +53,7 @@ trait DeserializableProperties
      *
      * @return bool
      */
-    private function canDeserialize(string $name, $value): bool
+    public function canDeserialize(string $name, $value): bool
     {
         $deserializer = $this->getDeserializer($name);
 
@@ -98,7 +68,7 @@ trait DeserializableProperties
      *
      * @return mixed
      */
-    private function deserialize(string $name, $value)
+    public function deserialize(string $name, $value)
     {
         $deserializer = $this->getDeserializer($name);
 

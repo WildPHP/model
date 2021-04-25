@@ -25,7 +25,7 @@ trait HasMandatoryProperties
      *
      * @return bool
      */
-    private function satisfiesMandatoryProperties(array $array): bool
+    public function satisfiesMandatoryProperties(array $array): bool
     {
         return array_intersect(array_keys($array), $this->mandatory) === $this->mandatory;
     }

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace NanoSector\Models;
 
+use NanoSector\Models\Deserializers\TypeDefinitionMapAdapter;
 use NanoSector\Models\Traits\DeserializableProperties;
 
 abstract class DeserializableModel extends Model
@@ -26,14 +27,14 @@ abstract class DeserializableModel extends Model
         // after the type definitions have been created.
         parent::__construct([]);
 
-        $this->inferDeserializers($this->typeDefinitionMap);
+        $this->deserializers = TypeDefinitionMapAdapter::inferDeserializers($this->getTypeDefinitionMap());
         $this->hydrate($properties);
     }
 
     /**
      * @inheritDoc
      */
-    protected function canAssignValue(string $key, $value): bool
+    public function canAssignValue(string $key, $value): bool
     {
         return parent::canAssignValue($key, $value) || $this->canDeserialize($key, $value);
     }
