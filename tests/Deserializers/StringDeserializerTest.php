@@ -52,5 +52,4 @@ class StringDeserializerTest extends TestCase
         self::assertSame('', $deserializer->deserialize(false));
         self::assertSame('any random string', $deserializer->deserialize('any random string'));
     }
-
 }
