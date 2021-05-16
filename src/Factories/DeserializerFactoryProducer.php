@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Factories;
+namespace WildPHP\Models\Factories;
 
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Helpers\ReflectionHelper;
-use NanoSector\Models\TypeDefinitions\ArrayTypeDefinition;
-use NanoSector\Models\TypeDefinitions\TypeDefinitionInterface;
+use WildPHP\Models\Exceptions\DeserializationInitializationException;
+use WildPHP\Models\Helpers\ReflectionHelper;
+use WildPHP\Models\TypeDefinitions\ArrayTypeDefinition;
+use WildPHP\Models\TypeDefinitions\TypeDefinitionInterface;
 
 class DeserializerFactoryProducer
 {
@@ -20,10 +20,10 @@ class DeserializerFactoryProducer
     /**
      * Creates a deserializer from a given type definition.
      *
-     * @param \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
+     * @param \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
      *
-     * @return \NanoSector\Models\Factories\DeserializerFactoryInterface
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @return \WildPHP\Models\Factories\DeserializerFactoryInterface
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public static function fromTypeDefinition(
         TypeDefinitionInterface $typeDefinition

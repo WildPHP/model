@@ -1,20 +1,20 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Deserializers;
+namespace WildPHP\Models\Deserializers;
 
 use DateTime;
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Factories\DeserializerFactory;
-use NanoSector\Models\Helpers\ReflectionHelper;
-use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
-use NanoSector\Models\TypeDefinitions\TypeDefinitionInterface;
+use WildPHP\Models\Exceptions\DeserializationInitializationException;
+use WildPHP\Models\Factories\DeserializerFactory;
+use WildPHP\Models\Helpers\ReflectionHelper;
+use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
+use WildPHP\Models\TypeDefinitions\TypeDefinitionInterface;
 
 /**
  * Class GlobalDeserializerRegistry
@@ -33,7 +33,7 @@ class GlobalDeserializerRegistry
     /**
      * Generate and add all default deserializers.
      *
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public static function all(): void
     {
@@ -44,7 +44,7 @@ class GlobalDeserializerRegistry
     /**
      * Generate and add deserializers for date and time types.
      *
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public static function dateTime(): void
     {
@@ -62,7 +62,7 @@ class GlobalDeserializerRegistry
     /**
      * Generate and add deserializers based on type juggling.
      *
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public static function juggle(): void
     {
@@ -83,10 +83,10 @@ class GlobalDeserializerRegistry
     /**
      * Add a new global deserializer.
      *
-     * @param string                                                              $type
-     * @param class-string|\NanoSector\Models\Deserializers\DeserializerInterface $deserializer
+     * @param string                                                           $type
+     * @param class-string|\WildPHP\Models\Deserializers\DeserializerInterface $deserializer
      *
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public static function add(string $type, $deserializer): void
     {
@@ -111,7 +111,7 @@ class GlobalDeserializerRegistry
      *
      * @param string $type
      *
-     * @return \NanoSector\Models\Deserializers\DeserializerInterface|null
+     * @return \WildPHP\Models\Deserializers\DeserializerInterface|null
      */
     public static function get(string $type): ?DeserializerInterface
     {
@@ -121,10 +121,10 @@ class GlobalDeserializerRegistry
     /**
      * Get a global deserializer for the given type definition.
      *
-     * @param \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
+     * @param \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
      *
-     * @return \NanoSector\Models\Deserializers\DeserializerInterface|null
-     * @see \NanoSector\Models\Deserializers\GlobalDeserializerRegistry::get()
+     * @return \WildPHP\Models\Deserializers\DeserializerInterface|null
+     * @see \WildPHP\Models\Deserializers\GlobalDeserializerRegistry::get()
      */
     public static function getForTypeDefinition(TypeDefinitionInterface $typeDefinition): ?DeserializerInterface
     {

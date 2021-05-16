@@ -1,26 +1,26 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Tests;
+namespace WildPHP\Models\Tests;
 
-use NanoSector\Models\Exceptions\ModelException;
-use NanoSector\Models\Tests\Samples\ScalarModel;
-use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
 use PHPUnit\Framework\TestCase;
+use WildPHP\Models\Exceptions\ModelException;
+use WildPHP\Models\Tests\Samples\ScalarModel;
+use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ScalarModelTest
  *
  * @package NanoSector\Models\Tests
- * @covers  \NanoSector\Models\Model
- * @uses    \NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition
- * @uses    \NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter
+ * @covers  \WildPHP\Models\Model
+ * @uses    \WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition
+ * @uses    \WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter
  */
 class ScalarModelTest extends TestCase
 {

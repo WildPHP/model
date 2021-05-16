@@ -1,19 +1,19 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models;
+namespace WildPHP\Models;
 
-use NanoSector\Models\Exceptions\ModelException;
-use NanoSector\Models\Traits\HasMagicProperties;
-use NanoSector\Models\Traits\HasMandatoryProperties;
-use NanoSector\Models\Traits\Hydratable;
-use NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter;
+use WildPHP\Models\Exceptions\ModelException;
+use WildPHP\Models\Traits\HasMagicProperties;
+use WildPHP\Models\Traits\HasMandatoryProperties;
+use WildPHP\Models\Traits\Hydratable;
+use WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter;
 
 abstract class Model
 {
@@ -43,14 +43,14 @@ abstract class Model
      * The above examples may be mixed to create complex models.
      *
      * @var array<string, string|string[]>
-     * @see \NanoSector\Models\Model::getStructure()
+     * @see \WildPHP\Models\Model::getStructure()
      */
     protected $structure = [];
 
     /**
      * Inferred type definitions for the settable properties.
      *
-     * @var array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
+     * @var array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface>
      */
     protected $typeDefinitionMap;
 
@@ -59,7 +59,7 @@ abstract class Model
      *
      * @param array<string, mixed> $properties default properties to set
      *
-     * @throws \NanoSector\Models\Exceptions\ModelException|\NanoSector\Models\Exceptions\TypeDefinitionException
+     * @throws \WildPHP\Models\Exceptions\ModelException|\WildPHP\Models\Exceptions\TypeDefinitionException
      */
     public function __construct(array $properties = [])
     {
@@ -116,7 +116,7 @@ abstract class Model
      * @param string $key
      * @param mixed  $value
      *
-     * @throws \NanoSector\Models\Exceptions\ModelException
+     * @throws \WildPHP\Models\Exceptions\ModelException
      */
     public function __set(string $key, $value): void
     {
@@ -152,7 +152,7 @@ abstract class Model
      * Returns this model's defined structure.
      *
      * @return array<string, string|string[]>
-     * @see \NanoSector\Models\Model::$structure
+     * @see \WildPHP\Models\Model::$structure
      */
     public function getStructure(): array
     {
@@ -162,7 +162,7 @@ abstract class Model
     /**
      * Returns the generated type definition map for this model.
      *
-     * @return array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
+     * @return array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface>
      */
     public function getTypeDefinitionMap(): array
     {

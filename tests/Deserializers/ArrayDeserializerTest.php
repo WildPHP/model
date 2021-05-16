@@ -1,32 +1,32 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Tests\Deserializers;
+namespace WildPHP\Models\Tests\Deserializers;
 
-use NanoSector\Models\Deserializers\ArrayDeserializer;
-use NanoSector\Models\Deserializers\GlobalDeserializerRegistry;
-use NanoSector\Models\Exceptions\DeserializationException;
-use NanoSector\Models\TypeDefinitions\PrimitiveTypeDefinition;
 use PHPUnit\Framework\TestCase;
+use WildPHP\Models\Deserializers\ArrayDeserializer;
+use WildPHP\Models\Deserializers\GlobalDeserializerRegistry;
+use WildPHP\Models\Exceptions\DeserializationException;
+use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ArrayDeserializerTest
  *
  * @package NanoSector\Models\Tests\Deserializers
- * @covers  \NanoSector\Models\Deserializers\ArrayDeserializer
- * @uses    \NanoSector\Models\Deserializers\FloatDeserializer
- * @uses    \NanoSector\Models\Deserializers\GlobalDeserializerRegistry
+ * @covers  \WildPHP\Models\Deserializers\ArrayDeserializer
+ * @uses    \WildPHP\Models\Deserializers\FloatDeserializer
+ * @uses    \WildPHP\Models\Deserializers\GlobalDeserializerRegistry
  */
 class ArrayDeserializerTest extends TestCase
 {
     /**
-     * @var \NanoSector\Models\Deserializers\ArrayDeserializer
+     * @var \WildPHP\Models\Deserializers\ArrayDeserializer
      */
     private $deserializer;
 

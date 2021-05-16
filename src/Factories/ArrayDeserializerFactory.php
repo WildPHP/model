@@ -1,29 +1,29 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Factories;
+namespace WildPHP\Models\Factories;
 
-use NanoSector\Models\Deserializers\ArrayDeserializer;
-use NanoSector\Models\Deserializers\DeserializerInterface;
+use WildPHP\Models\Deserializers\ArrayDeserializer;
+use WildPHP\Models\Deserializers\DeserializerInterface;
 
 class ArrayDeserializerFactory implements DeserializerFactoryInterface
 {
 
     /**
-     * @var \NanoSector\Models\Factories\DeserializerFactoryInterface
+     * @var \WildPHP\Models\Factories\DeserializerFactoryInterface
      */
     private $parentFactory;
 
     /**
      * ArrayDeserializerFactory constructor.
      *
-     * @param \NanoSector\Models\Factories\DeserializerFactoryInterface $parentFactory
+     * @param \WildPHP\Models\Factories\DeserializerFactoryInterface $parentFactory
      */
     public function __construct(DeserializerFactoryInterface $parentFactory)
     {

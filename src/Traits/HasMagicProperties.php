@@ -1,15 +1,15 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Traits;
+namespace WildPHP\Models\Traits;
 
-use NanoSector\Models\Exceptions\ModelException;
+use WildPHP\Models\Exceptions\ModelException;
 
 trait HasMagicProperties
 {
@@ -29,7 +29,7 @@ trait HasMagicProperties
      * @param string $name
      *
      * @return mixed|null
-     * @throws \NanoSector\Models\Exceptions\ModelException when accessing an
+     * @throws \WildPHP\Models\Exceptions\ModelException when accessing an
      *   unknown property.
      */
     public function &__get(string $name)

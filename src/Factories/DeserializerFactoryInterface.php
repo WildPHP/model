@@ -1,15 +1,15 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Factories;
+namespace WildPHP\Models\Factories;
 
-use NanoSector\Models\Deserializers\DeserializerInterface;
+use WildPHP\Models\Deserializers\DeserializerInterface;
 
 interface DeserializerFactoryInterface
 {

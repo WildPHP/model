@@ -1,15 +1,15 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\TypeDefinitions;
+namespace WildPHP\Models\TypeDefinitions;
 
-use NanoSector\Models\Exceptions\TypeDefinitionException;
+use WildPHP\Models\Exceptions\TypeDefinitionException;
 
 class ClassTypeDefinition implements TypeDefinitionInterface
 {
@@ -24,7 +24,7 @@ class ClassTypeDefinition implements TypeDefinitionInterface
      *
      * @param string $wantedClass
      *
-     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
+     * @throws \WildPHP\Models\Exceptions\TypeDefinitionException
      */
     public function __construct(string $wantedClass)
     {

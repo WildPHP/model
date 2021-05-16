@@ -1,22 +1,22 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
-namespace NanoSector\Models\Tests\Deserializers;
+namespace WildPHP\Models\Tests\Deserializers;
 
-use NanoSector\Models\Deserializers\BooleanDeserializer;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use WildPHP\Models\Deserializers\BooleanDeserializer;
 
 /**
  * Class BooleanDeserializerTest
  *
  * @package NanoSector\Models\Tests\Deserializers
- * @covers  \NanoSector\Models\Deserializers\BooleanDeserializer
- * @uses    \NanoSector\Models\Helpers\BooleanHelper
+ * @covers  \WildPHP\Models\Deserializers\BooleanDeserializer
+ * @uses    \WildPHP\Models\Helpers\BooleanHelper
  */
 class BooleanDeserializerTest extends TestCase
 {

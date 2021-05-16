@@ -1,23 +1,23 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Tests\Deserializers;
+namespace WildPHP\Models\Tests\Deserializers;
 
-use NanoSector\Models\Deserializers\StringDeserializer;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use WildPHP\Models\Deserializers\StringDeserializer;
 
 /**
  * Class StringDeserializerTest
  *
  * @package NanoSector\Models\Tests\Deserializers
- * @covers  \NanoSector\Models\Deserializers\StringDeserializer
+ * @covers  \WildPHP\Models\Deserializers\StringDeserializer
  */
 class StringDeserializerTest extends TestCase
 {

@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Helpers;
+namespace WildPHP\Models\Helpers;
 
-use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Model;
 use ReflectionClass;
 use ReflectionException;
+use WildPHP\Models\Deserializers\DeserializerInterface;
+use WildPHP\Models\Model;
 
 class ReflectionHelper
 {

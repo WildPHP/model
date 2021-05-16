@@ -1,15 +1,15 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Deserializers;
+namespace WildPHP\Models\Deserializers;
 
-use NanoSector\Models\Exceptions\DeserializationException;
+use WildPHP\Models\Exceptions\DeserializationException;
 
 class ArrayDeserializer implements DeserializerInterface
 {
@@ -32,7 +32,7 @@ class ArrayDeserializer implements DeserializerInterface
      * @param mixed $value
      *
      * @return array<string|int, mixed>
-     * @throws \NanoSector\Models\Exceptions\DeserializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationException
      */
     public function deserialize($value): array
     {

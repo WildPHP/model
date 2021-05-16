@@ -1,21 +1,21 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
-namespace NanoSector\Models\Tests\Deserializers;
+namespace WildPHP\Models\Tests\Deserializers;
 
-use NanoSector\Models\Deserializers\FloatDeserializer;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use WildPHP\Models\Deserializers\FloatDeserializer;
 
 /**
  * Class FloatDeserializerTest
  *
  * @package NanoSector\Models\Tests\Deserializers
- * @covers  \NanoSector\Models\Deserializers\FloatDeserializer
+ * @covers  \WildPHP\Models\Deserializers\FloatDeserializer
  */
 class FloatDeserializerTest extends TestCase
 {

@@ -1,5 +1,5 @@
 {
-  "name": "yoshi2889/model",
+  "name": "wildphp/model",
   "description": "Magically simple model class",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -8,12 +8,12 @@
   },
   "autoload": {
     "psr-4": {
-      "NanoSector\\Models\\": "src/"
+      "WildPHP\\Models\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "NanoSector\\Models\\Tests\\": "tests/"
+      "WildPHP\\Models\\Tests\\": "tests/"
     }
   },
   "config": {

@@ -1,25 +1,25 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Deserializers;
+namespace WildPHP\Models\Deserializers;
 
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Factories\DeserializerFactoryProducer;
+use WildPHP\Models\Exceptions\DeserializationInitializationException;
+use WildPHP\Models\Factories\DeserializerFactoryProducer;
 
 class TypeDefinitionMapAdapter
 {
     /**
      * Infer deserializers from settable types.
      *
-     * @param array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface> $typeDefinitions
+     * @param array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface> $typeDefinitions
      *
-     * @return array<string, \NanoSector\Models\Deserializers\DeserializerInterface>
+     * @return array<string, \WildPHP\Models\Deserializers\DeserializerInterface>
      */
     public static function inferDeserializers(array $typeDefinitions): array
     {

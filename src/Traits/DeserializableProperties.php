@@ -1,19 +1,16 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Traits;
+namespace WildPHP\Models\Traits;
 
-use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Deserializers\GlobalDeserializerRegistry;
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Factories\DeserializerFactoryProducer;
-use NanoSector\Models\Helpers\DeserializerHelper;
+use WildPHP\Models\Deserializers\DeserializerInterface;
+use WildPHP\Models\Helpers\DeserializerHelper;
 
 trait DeserializableProperties
 {

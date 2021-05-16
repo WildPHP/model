@@ -1,13 +1,13 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\TypeDefinitions;
+namespace WildPHP\Models\TypeDefinitions;
 
 class TypeDefinitionInterpreter
 {
@@ -17,8 +17,8 @@ class TypeDefinitionInterpreter
      *
      * @param array<string, string|string[]> $array
      *
-     * @return array<string, \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface>
-     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
+     * @return array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface>
+     * @throws \WildPHP\Models\Exceptions\TypeDefinitionException
      */
     public static function createDefinitionMap(array $array): array
     {
@@ -35,7 +35,7 @@ class TypeDefinitionInterpreter
      *
      * @param string|string[] $definition
      *
-     * @throws \NanoSector\Models\Exceptions\TypeDefinitionException
+     * @throws \WildPHP\Models\Exceptions\TypeDefinitionException
      */
     public static function interpret($definition): TypeDefinitionInterface
     {

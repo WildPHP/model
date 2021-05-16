@@ -1,17 +1,17 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Deserializers;
+namespace WildPHP\Models\Deserializers;
 
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Helpers\ReflectionHelper;
-use NanoSector\Models\Model;
+use WildPHP\Models\Exceptions\DeserializationInitializationException;
+use WildPHP\Models\Helpers\ReflectionHelper;
+use WildPHP\Models\Model;
 
 class ModelDeserializer implements DeserializerInterface
 {
@@ -26,7 +26,7 @@ class ModelDeserializer implements DeserializerInterface
      *
      * @param string $modelClass
      *
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public function __construct(string $modelClass)
     {
@@ -42,7 +42,7 @@ class ModelDeserializer implements DeserializerInterface
     /**
      * @param array<string, mixed> $value
      *
-     * @return \NanoSector\Models\Model
+     * @return \WildPHP\Models\Model
      */
     public function deserialize($value): Model
     {

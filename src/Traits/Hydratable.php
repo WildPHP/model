@@ -1,13 +1,13 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Traits;
+namespace WildPHP\Models\Traits;
 
 trait Hydratable
 {
@@ -16,7 +16,7 @@ trait Hydratable
      * Setting this when guarded is set will override guarded.
      *
      * @var string[]
-     * @see \NanoSector\Models\Traits\Hydratable::$guarded
+     * @see \WildPHP\Models\Traits\Hydratable::$guarded
      */
     protected $fillable = [];
 
@@ -25,7 +25,7 @@ trait Hydratable
      * Setting this when fillable is set has no effect.
      *
      * @var string[]
-     * @see \NanoSector\Models\Traits\Hydratable::$fillable
+     * @see \WildPHP\Models\Traits\Hydratable::$fillable
      */
     protected $guarded = [];
 

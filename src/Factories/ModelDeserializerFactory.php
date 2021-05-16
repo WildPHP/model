@@ -1,18 +1,18 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Factories;
+namespace WildPHP\Models\Factories;
 
-use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Deserializers\ModelDeserializer;
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Helpers\ReflectionHelper;
+use WildPHP\Models\Deserializers\DeserializerInterface;
+use WildPHP\Models\Deserializers\ModelDeserializer;
+use WildPHP\Models\Exceptions\DeserializationInitializationException;
+use WildPHP\Models\Helpers\ReflectionHelper;
 
 class ModelDeserializerFactory implements DeserializerFactoryInterface
 {
@@ -27,7 +27,7 @@ class ModelDeserializerFactory implements DeserializerFactoryInterface
      *
      * @param string $modelClass
      *
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public function __construct(string $modelClass)
     {
@@ -40,8 +40,8 @@ class ModelDeserializerFactory implements DeserializerFactoryInterface
     }
 
     /**
-     * @return \NanoSector\Models\Deserializers\DeserializerInterface
-     * @throws \NanoSector\Models\Exceptions\DeserializationInitializationException
+     * @return \WildPHP\Models\Deserializers\DeserializerInterface
+     * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
     public function getDeserializer(): DeserializerInterface
     {

@@ -1,19 +1,19 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\TypeDefinitions;
+namespace WildPHP\Models\TypeDefinitions;
 
 class ArrayTypeDefinition implements TypeDefinitionInterface
 {
 
     /**
-     * @var \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface
+     * @var \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface
      */
     private $contentDefinition;
 
@@ -58,7 +58,7 @@ class ArrayTypeDefinition implements TypeDefinitionInterface
     }
 
     /**
-     * @return \NanoSector\Models\TypeDefinitions\TypeDefinitionInterface
+     * @return \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface
      */
     public function getContentDefinition(): TypeDefinitionInterface
     {

@@ -1,26 +1,26 @@
 <?php
 
 /*
- * Copyright 2021 NanoSector
+ * Copyright 2021 The WildPHP Team
  * See LICENSE.md in the project root.
  */
 
 declare(strict_types=1);
 
-namespace NanoSector\Models\Helpers;
+namespace WildPHP\Models\Helpers;
 
-use NanoSector\Models\Deserializers\DeserializerInterface;
-use NanoSector\Models\Exceptions\DeserializationInitializationException;
-use NanoSector\Models\Exceptions\TypeDefinitionException;
-use NanoSector\Models\Factories\DeserializerFactoryProducer;
-use NanoSector\Models\TypeDefinitions\TypeDefinitionInterpreter;
+use WildPHP\Models\Deserializers\DeserializerInterface;
+use WildPHP\Models\Exceptions\DeserializationInitializationException;
+use WildPHP\Models\Exceptions\TypeDefinitionException;
+use WildPHP\Models\Factories\DeserializerFactoryProducer;
+use WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter;
 
 class DeserializerHelper
 {
     /**
      * @param DeserializerInterface|string|string[] $wanted
      *
-     * @return \NanoSector\Models\Deserializers\DeserializerInterface|null
+     * @return \WildPHP\Models\Deserializers\DeserializerInterface|null
      */
     public static function getOrNew($wanted): ?DeserializerInterface
     {
