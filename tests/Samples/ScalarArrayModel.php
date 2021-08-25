@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace WildPHP\Models\Tests\Samples;
 
 use WildPHP\Models\Model;
-use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
+use WildPHP\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ScalarArrayModel

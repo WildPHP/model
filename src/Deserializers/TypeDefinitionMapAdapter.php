@@ -17,7 +17,7 @@ class TypeDefinitionMapAdapter
     /**
      * Infer deserializers from settable types.
      *
-     * @param array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface> $typeDefinitions
+     * @param array<string, \WildPHP\TypeDefinitions\TypeDefinitionInterface> $typeDefinitions
      *
      * @return array<string, \WildPHP\Models\Deserializers\DeserializerInterface>
      */

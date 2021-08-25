@@ -12,17 +12,17 @@ namespace WildPHP\Models\Tests;
 use PHPUnit\Framework\TestCase;
 use WildPHP\Models\Exceptions\ModelException;
 use WildPHP\Models\Tests\Samples\ScalarArrayModel;
-use WildPHP\Models\TypeDefinitions\ArrayTypeDefinition;
-use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
+use WildPHP\TypeDefinitions\ArrayTypeDefinition;
+use WildPHP\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ScalarArrayModelTest
  *
  * @package NanoSector\Models\Tests
  * @covers  \WildPHP\Models\Model
- * @uses    \WildPHP\Models\TypeDefinitions\ArrayTypeDefinition
- * @uses    \WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition
- * @uses    \WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter
+ * @uses    \WildPHP\TypeDefinitions\ArrayTypeDefinition
+ * @uses    \WildPHP\TypeDefinitions\PrimitiveTypeDefinition
+ * @uses    \WildPHP\TypeDefinitions\TypeDefinitionInterpreter
  */
 class ScalarArrayModelTest extends TestCase
 {
@@ -118,7 +118,7 @@ class ScalarArrayModelTest extends TestCase
         );
     }
 
-    public function testAddDefaultsDoesNotOverwriteSetKeys()
+    public function testAddDefaultsDoesNotOverwriteSetKeys(): void
     {
         $model = new ScalarArrayModel();
 
