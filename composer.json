@@ -4,7 +4,8 @@
   "minimum-stability": "stable",
   "license": "MIT",
   "require": {
-    "php": "^7.2"
+    "php": "^7.2",
+    "wildphp/type-definitions": "^0.1"
   },
   "autoload": {
     "psr-4": {

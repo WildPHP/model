@@ -11,8 +11,8 @@ namespace WildPHP\Models\Factories;
 
 use WildPHP\Models\Exceptions\DeserializationInitializationException;
 use WildPHP\Models\Helpers\ReflectionHelper;
-use WildPHP\Models\TypeDefinitions\ArrayTypeDefinition;
-use WildPHP\Models\TypeDefinitions\TypeDefinitionInterface;
+use WildPHP\TypeDefinitions\ArrayTypeDefinition;
+use WildPHP\TypeDefinitions\TypeDefinitionInterface;
 
 class DeserializerFactoryProducer
 {
@@ -20,7 +20,7 @@ class DeserializerFactoryProducer
     /**
      * Creates a deserializer from a given type definition.
      *
-     * @param \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
+     * @param \WildPHP\TypeDefinitions\TypeDefinitionInterface $typeDefinition
      *
      * @return \WildPHP\Models\Factories\DeserializerFactoryInterface
      * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException

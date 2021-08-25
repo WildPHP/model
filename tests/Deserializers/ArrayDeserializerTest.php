@@ -11,9 +11,8 @@ namespace WildPHP\Models\Tests\Deserializers;
 
 use PHPUnit\Framework\TestCase;
 use WildPHP\Models\Deserializers\ArrayDeserializer;
-use WildPHP\Models\Deserializers\GlobalDeserializerRegistry;
+use WildPHP\Models\Deserializers\FloatDeserializer;
 use WildPHP\Models\Exceptions\DeserializationException;
-use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ArrayDeserializerTest
@@ -21,7 +20,6 @@ use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
  * @package NanoSector\Models\Tests\Deserializers
  * @covers  \WildPHP\Models\Deserializers\ArrayDeserializer
  * @uses    \WildPHP\Models\Deserializers\FloatDeserializer
- * @uses    \WildPHP\Models\Deserializers\GlobalDeserializerRegistry
  */
 class ArrayDeserializerTest extends TestCase
 {
@@ -32,16 +30,8 @@ class ArrayDeserializerTest extends TestCase
 
     protected function setUp(): void
     {
-        GlobalDeserializerRegistry::juggle();
-
-        $childDeserializer = GlobalDeserializerRegistry::get(PrimitiveTypeDefinition::FLOAT);
-
-        if (is_null($childDeserializer)) {
-            self::fail('Unrelated error: Could not create child definition.');
-        }
-
         $this->deserializer = new ArrayDeserializer(
-            $childDeserializer
+            new FloatDeserializer()
         );
     }
 
@@ -74,7 +64,7 @@ class ArrayDeserializerTest extends TestCase
         self::assertEquals([], $this->deserializer->deserialize('and a gnome attacked me'));
     }
 
-    public function testDeserializeThrowsExceptionWhenArrayContainsInvalidItems()
+    public function testDeserializeThrowsExceptionWhenArrayContainsInvalidItems(): void
     {
         $this->expectException(DeserializationException::class);
         $this->deserializer->deserialize([[1]]);

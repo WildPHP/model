@@ -13,7 +13,7 @@ use WildPHP\Models\Exceptions\ModelException;
 use WildPHP\Models\Traits\HasMagicProperties;
 use WildPHP\Models\Traits\HasMandatoryProperties;
 use WildPHP\Models\Traits\Hydratable;
-use WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter;
+use WildPHP\TypeDefinitions\TypeDefinitionInterpreter;
 
 abstract class Model
 {
@@ -50,7 +50,7 @@ abstract class Model
     /**
      * Inferred type definitions for the settable properties.
      *
-     * @var array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface>
+     * @var array<string, \WildPHP\TypeDefinitions\TypeDefinitionInterface>
      */
     protected $typeDefinitionMap;
 
@@ -59,7 +59,7 @@ abstract class Model
      *
      * @param array<string, mixed> $properties default properties to set
      *
-     * @throws \WildPHP\Models\Exceptions\ModelException|\WildPHP\Models\Exceptions\TypeDefinitionException
+     * @throws \WildPHP\Models\Exceptions\ModelException|\WildPHP\TypeDefinitions\Exceptions\TypeDefinitionException
      */
     public function __construct(array $properties = [])
     {
@@ -162,7 +162,7 @@ abstract class Model
     /**
      * Returns the generated type definition map for this model.
      *
-     * @return array<string, \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface>
+     * @return array<string, \WildPHP\TypeDefinitions\TypeDefinitionInterface>
      */
     public function getTypeDefinitionMap(): array
     {

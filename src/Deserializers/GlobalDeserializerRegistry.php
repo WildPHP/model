@@ -13,8 +13,8 @@ use DateTime;
 use WildPHP\Models\Exceptions\DeserializationInitializationException;
 use WildPHP\Models\Factories\DeserializerFactory;
 use WildPHP\Models\Helpers\ReflectionHelper;
-use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
-use WildPHP\Models\TypeDefinitions\TypeDefinitionInterface;
+use WildPHP\TypeDefinitions\PrimitiveTypeDefinition;
+use WildPHP\TypeDefinitions\TypeDefinitionInterface;
 
 /**
  * Class GlobalDeserializerRegistry
@@ -121,7 +121,7 @@ class GlobalDeserializerRegistry
     /**
      * Get a global deserializer for the given type definition.
      *
-     * @param \WildPHP\Models\TypeDefinitions\TypeDefinitionInterface $typeDefinition
+     * @param \WildPHP\TypeDefinitions\TypeDefinitionInterface $typeDefinition
      *
      * @return \WildPHP\Models\Deserializers\DeserializerInterface|null
      * @see \WildPHP\Models\Deserializers\GlobalDeserializerRegistry::get()

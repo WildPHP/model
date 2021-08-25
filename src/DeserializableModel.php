@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace NanoSector\Models;
+namespace WildPHP\Models;
 
 use WildPHP\Models\Deserializers\TypeDefinitionMapAdapter;
 use WildPHP\Models\Traits\DeserializableProperties;

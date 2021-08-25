@@ -12,15 +12,15 @@ namespace WildPHP\Models\Tests;
 use PHPUnit\Framework\TestCase;
 use WildPHP\Models\Exceptions\ModelException;
 use WildPHP\Models\Tests\Samples\ScalarModel;
-use WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition;
+use WildPHP\TypeDefinitions\PrimitiveTypeDefinition;
 
 /**
  * Class ScalarModelTest
  *
  * @package NanoSector\Models\Tests
  * @covers  \WildPHP\Models\Model
- * @uses    \WildPHP\Models\TypeDefinitions\PrimitiveTypeDefinition
- * @uses    \WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter
+ * @uses    \WildPHP\TypeDefinitions\PrimitiveTypeDefinition
+ * @uses    \WildPHP\TypeDefinitions\TypeDefinitionInterpreter
  */
 class ScalarModelTest extends TestCase
 {
@@ -123,7 +123,7 @@ class ScalarModelTest extends TestCase
         );
     }
 
-    public function testAddDefaultsDoesNotOverwriteSetKeys()
+    public function testAddDefaultsDoesNotOverwriteSetKeys(): void
     {
         $model = new ScalarModel();
 
@@ -160,7 +160,7 @@ class ScalarModelTest extends TestCase
         $model->nonExistentProperty;
     }
 
-    public function testToArrayReturnsProperties()
+    public function testToArrayReturnsProperties(): void
     {
         $model = new ScalarModel(
             [

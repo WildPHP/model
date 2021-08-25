@@ -11,9 +11,9 @@ namespace WildPHP\Models\Helpers;
 
 use WildPHP\Models\Deserializers\DeserializerInterface;
 use WildPHP\Models\Exceptions\DeserializationInitializationException;
-use WildPHP\Models\Exceptions\TypeDefinitionException;
 use WildPHP\Models\Factories\DeserializerFactoryProducer;
-use WildPHP\Models\TypeDefinitions\TypeDefinitionInterpreter;
+use WildPHP\TypeDefinitions\Exceptions\TypeDefinitionException;
+use WildPHP\TypeDefinitions\TypeDefinitionInterpreter;
 
 class DeserializerHelper
 {
