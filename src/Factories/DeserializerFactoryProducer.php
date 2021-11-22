@@ -43,6 +43,7 @@ class DeserializerFactoryProducer
         }
 
         if (ReflectionHelper::isModel($definition)) {
+            /** @var class-string<\WildPHP\Models\Model> $definition */
             return new ModelDeserializerFactory(
                 $definition
             );

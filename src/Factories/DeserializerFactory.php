@@ -14,11 +14,14 @@ use WildPHP\Models\Deserializers\DeserializerInterface;
 use WildPHP\Models\Exceptions\DeserializationInitializationException;
 use WildPHP\Models\Helpers\ReflectionHelper;
 
+/**
+ * Factory for DeserializerInterface objects
+ */
 class DeserializerFactory implements DeserializerFactoryInterface
 {
 
     /**
-     * @var string
+     * @var class-string<DeserializerInterface>
      */
     private $className;
 
@@ -50,6 +53,7 @@ class DeserializerFactory implements DeserializerFactoryInterface
             );
         }
 
+        /** @var class-string<DeserializerInterface> $className */
         $this->className = $className;
     }
 

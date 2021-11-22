@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace WildPHP\Models\Deserializers;
 
 use DateTime;
+use WildPHP\Models\Deserializers\DeserializerInterface;
 use WildPHP\Models\Exceptions\DeserializationInitializationException;
 use WildPHP\Models\Factories\DeserializerFactory;
 use WildPHP\Models\Helpers\ReflectionHelper;
@@ -84,7 +85,7 @@ class GlobalDeserializerRegistry
      * Add a new global deserializer.
      *
      * @param string                                                           $type
-     * @param class-string|\WildPHP\Models\Deserializers\DeserializerInterface $deserializer
+     * @param class-string<DeserializerInterface>|DeserializerInterface $deserializer
      *
      * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
