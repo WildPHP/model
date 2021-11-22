@@ -14,18 +14,21 @@ use WildPHP\Models\Deserializers\ModelDeserializer;
 use WildPHP\Models\Exceptions\DeserializationInitializationException;
 use WildPHP\Models\Helpers\ReflectionHelper;
 
+/**
+ * Factory for ModelDeserializer
+ */
 class ModelDeserializerFactory implements DeserializerFactoryInterface
 {
 
     /**
-     * @var string
+     * @var class-string<\WildPHP\Models\Model>
      */
     private $modelClass;
 
     /**
      * ModelDeserializerFactory constructor.
      *
-     * @param string $modelClass
+     * @param class-string<\WildPHP\Models\Model> $modelClass
      *
      * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */

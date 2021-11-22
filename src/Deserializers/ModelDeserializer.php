@@ -13,18 +13,21 @@ use WildPHP\Models\Exceptions\DeserializationInitializationException;
 use WildPHP\Models\Helpers\ReflectionHelper;
 use WildPHP\Models\Model;
 
+/**
+ * Deserializer for Model classes
+ */
 class ModelDeserializer implements DeserializerInterface
 {
 
     /**
-     * @var string
+     * @var class-string<\WildPHP\Models\Model>
      */
     private $modelClass;
 
     /**
      * ModelDeserializer constructor.
      *
-     * @param string $modelClass
+     * @param class-string<\WildPHP\Models\Model> $modelClass
      *
      * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException
      */
