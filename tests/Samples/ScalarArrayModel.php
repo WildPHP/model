@@ -18,18 +18,18 @@ use WildPHP\TypeDefinitions\PrimitiveTypeDefinition;
  * @package NanoSector\Models\Tests\Samples
  *
  * @property string[] $strings
- * @property int[] $ints
- * @property bool[] $bools
- * @property float[] $floats
- * @property null[] $nulls
+ * @property int[]    $ints
+ * @property bool[]   $bools
+ * @property float[]  $floats
+ * @property null[]   $nulls
  */
 class ScalarArrayModel extends Model
 {
     protected $structure = [
-      'strings' => [PrimitiveTypeDefinition::STRING],
-      'ints' => [PrimitiveTypeDefinition::INTEGER],
-      'bools' => [PrimitiveTypeDefinition::BOOLEAN],
-      'floats' => [PrimitiveTypeDefinition::FLOAT],
-      'nulls' => [PrimitiveTypeDefinition::NULL],
+        'strings' => [PrimitiveTypeDefinition::STRING],
+        'ints' => [PrimitiveTypeDefinition::INTEGER],
+        'bools' => [PrimitiveTypeDefinition::BOOLEAN],
+        'floats' => [PrimitiveTypeDefinition::FLOAT],
+        'nulls' => [PrimitiveTypeDefinition::NULL],
     ];
 }

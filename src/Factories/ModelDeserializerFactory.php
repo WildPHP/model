@@ -19,7 +19,6 @@ use WildPHP\Models\Helpers\ReflectionHelper;
  */
 class ModelDeserializerFactory implements DeserializerFactoryInterface
 {
-
     /**
      * @var class-string<\WildPHP\Models\Model>
      */

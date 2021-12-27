@@ -16,7 +16,6 @@ use WildPHP\Models\Model;
 
 class ReflectionHelper
 {
-
     /**
      * Determine whether a given class is a deserializer.
      *

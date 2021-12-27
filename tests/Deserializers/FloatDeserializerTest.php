@@ -19,7 +19,6 @@ use WildPHP\Models\Deserializers\FloatDeserializer;
  */
 class FloatDeserializerTest extends TestCase
 {
-
     public function testCanDeserialize(): void
     {
         $deserializer = new FloatDeserializer();

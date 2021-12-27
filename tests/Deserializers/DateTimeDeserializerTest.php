@@ -22,7 +22,6 @@ use WildPHP\Models\Exceptions\DeserializationException;
  */
 class DateTimeDeserializerTest extends TestCase
 {
-
     public function testCanDeserialize(): void
     {
         $deserializer = new DateTimeDeserializer();

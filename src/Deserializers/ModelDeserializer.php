@@ -18,7 +18,6 @@ use WildPHP\Models\Model;
  */
 class ModelDeserializer implements DeserializerInterface
 {
-
     /**
      * @var class-string<\WildPHP\Models\Model>
      */

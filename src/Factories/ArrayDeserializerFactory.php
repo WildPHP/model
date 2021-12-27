@@ -14,7 +14,6 @@ use WildPHP\Models\Deserializers\DeserializerInterface;
 
 class ArrayDeserializerFactory implements DeserializerFactoryInterface
 {
-
     /**
      * @var \WildPHP\Models\Factories\DeserializerFactoryInterface
      */
