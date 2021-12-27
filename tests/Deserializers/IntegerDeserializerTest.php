@@ -15,11 +15,10 @@ use WildPHP\Models\Deserializers\IntegerDeserializer;
  * Class IntegerDeserializerTest
  *
  * @package NanoSector\Models\Tests\Deserializers
- * @covers \WildPHP\Models\Deserializers\IntegerDeserializer
+ * @covers  \WildPHP\Models\Deserializers\IntegerDeserializer
  */
 class IntegerDeserializerTest extends TestCase
 {
-
     public function testCanDeserialize(): void
     {
         $deserializer = new IntegerDeserializer();

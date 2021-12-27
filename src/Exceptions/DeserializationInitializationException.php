@@ -13,5 +13,4 @@ use Exception;
 
 class DeserializationInitializationException extends Exception
 {
-
 }

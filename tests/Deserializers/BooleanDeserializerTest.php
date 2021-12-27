@@ -20,7 +20,6 @@ use WildPHP\Models\Deserializers\BooleanDeserializer;
  */
 class BooleanDeserializerTest extends TestCase
 {
-
     public function testCanDeserialize(): void
     {
         $deserializer = new BooleanDeserializer();

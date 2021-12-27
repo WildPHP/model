@@ -84,7 +84,7 @@ class GlobalDeserializerRegistry
     /**
      * Add a new global deserializer.
      *
-     * @param string                                                           $type
+     * @param string                                                    $type
      * @param class-string<DeserializerInterface>|DeserializerInterface $deserializer
      *
      * @throws \WildPHP\Models\Exceptions\DeserializationInitializationException

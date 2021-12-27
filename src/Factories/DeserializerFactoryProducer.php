@@ -16,7 +16,6 @@ use WildPHP\TypeDefinitions\TypeDefinitionInterface;
 
 class DeserializerFactoryProducer
 {
-
     /**
      * Creates a deserializer from a given type definition.
      *

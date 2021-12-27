@@ -13,7 +13,6 @@ use WildPHP\Models\Exceptions\ModelException;
 
 trait HasMagicProperties
 {
-
     /**
      * The properties in this object. You can override this in your model
      * class to set default properties.
